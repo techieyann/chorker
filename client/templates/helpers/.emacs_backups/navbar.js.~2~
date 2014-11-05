@@ -1,0 +1,8 @@
+Template.myNavbar.helpers({
+	activeNav: function (nav){
+		if (nav == Session.get('route')){
+			return 'active';
+		}
+		return '';
+	}
+});

@@ -1,5 +1,6 @@
 BaseController = RouteController.extend({
-	action: function () {
-		this.render();
+	onBeforeAction: function () {
+		Session.set('route', this.route._path);
+		this.next();
 	}
 });

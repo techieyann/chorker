@@ -6,8 +6,7 @@ Router.configure({
 		'myFooter': {to: 'footer'}
 	},
 	notFoundTemplate: 'error404',
-	loadingTemplate: 'loading',
-	controller: 'BaseController'
+	loadingTemplate: 'loading'
 });
 
 Router.onBeforeAction('loading');
