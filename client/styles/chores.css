@@ -1,0 +1,22 @@
+/* CSS declarations go here */
+
+
+.text-right{
+		text-align:right;
+}
+#login-buttons{
+		line-height:3.5;
+}
+#login-dropdown-list{
+		position: fixed !important;
+		right:10px !important;
+		left:initial;
+		text-align:initial;
+}
+.login-close-text{
+		line-height:1 !important;
+		float:right !important;
+}
+.login-li{
+		padding-right:20px;
+}

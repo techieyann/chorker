@@ -1,0 +1,15 @@
+<head><title>chores</title></head>
+
+<template name="index">
+	<div class="container">
+		<nav class="navbar navbar-default" role="navigation">
+			{{> yield region="navbar"}}
+		</nav>
+
+		{{> yield}}
+
+		<footer>
+			{{> yield region="footer"}}
+		</footer>
+	</div>
+</template>

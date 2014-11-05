@@ -1,0 +1,3 @@
+BaseController = RouterController.extend({
+
+});
