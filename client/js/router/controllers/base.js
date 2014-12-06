@@ -4,3 +4,15 @@ BaseController = RouteController.extend({
 		this.next();
 	}
 });
+
+RegisteredController = BaseController.extend({
+	onBeforeAction: function () {
+		if (Meteor.user()) {
+			this.next();
+}
+else {
+	alert("info", "please login to access this page");
+	Router.go("welcome");
+}
+	}
+});

@@ -1,0 +1,21 @@
+<template name="userInit">
+	<div class="row">
+		{{#if houses}}
+		<div class="col-sm-5">
+			<h4>Choose your House:</h4>	
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+				{{#each houses}}
+				{{> joinHouseForm}}
+				{{/each}}
+			</div>
+		</div>
+		<div class="col-sm-1"><h1>or</h1></div>
+		{{/if}}
+		<div class="col-sm-5">
+			<div class="well">
+					 <h4>Create a new House:</h4>
+					 {{> newHouseForm}}
+			</div>
+		</div>
+	</div>
+</template>

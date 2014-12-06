@@ -1,4 +1,12 @@
 <template name="profile">
-	what what
-	<p>yo this is your profile</p>
+	{{#if initialized}}
+	<p> you are initialized </p>
+	{{else}}
+	{{> userInit}}
+	{{/if}}
 </template>
+
+
+
+
+

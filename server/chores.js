@@ -11,7 +11,7 @@ Accounts.onCreateUser(function (options, user) {
 	if (options.profile) {
 		user.profile = options.profile;
 	}
-	user.profile.initialized = 0;
+	user.profile.initialized = false;
 	return user;
 });
 

@@ -1,0 +1,41 @@
+<template name="chores">
+	<div class="row">
+		{{#if chores}}
+		<div class="col-sm-5">
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+				{{#each chores}}
+				{{> choreTab}}
+				{{/each}}
+			</div>
+		</div>
+		<div class="col-sm-1"><h1>or</h1></div>
+		{{/if}}
+		<div class="col-sm-5">
+			<div class="well">
+					 <h4>Create a new Chore:</h4>
+					 {{> newChoreForm}}
+			</div>
+		</div>
+	</div>
+
+</template>
+
+<template name="choreTab">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-{{_id}}">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{_id}}" aria-expanded="false" aria-controls="collapse-{{_id}}">
+					{{name}}
+        </a>
+				<button class="complete-chore" id="{{_id}}">Completed!</button>
+      </h4>
+    </div>
+    <div id="collapse-{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{_id}}">
+      <div class="panel-body">
+				<p>{{room}}</p>
+				<p>{{description}}</p>
+				<p>Last done on {{lastCompleted}} by {{lastCompletedBy}}</p>
+      </div>
+    </div>
+  </div>	
+</template>
