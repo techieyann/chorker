@@ -24,7 +24,6 @@ Router.map(function () {
 				if (Meteor.user().profile.initialized) {
 					var houseId = Meteor.user().profile.house;
 					Meteor.subscribe('houses', houseId);
-					Session.set('house', Houses.findOne({_id: houseId}));
 					return Meteor.subscribe('chores', houseId); 
 				}
 			}
@@ -41,6 +40,7 @@ Router.map(function () {
 		path: '/house/:_id',
 		controller: 'RegisteredController',
 		waitOn: function () {
+			Meteor.subscribe('chores', this.params._id);
 			return Meteor.subscribe('houses', this.params._id);
 		},
 		data: function () {
@@ -53,6 +53,7 @@ Router.map(function () {
 		waitOn: function () {
 			if (Meteor.user()) {
 				if (Meteor.user().profile.initialized) {
+					Meteor.subscribe('houses');
 					return Meteor.subscribe('chores', Meteor.user().profile.house); 
 				}
 			}
@@ -60,7 +61,7 @@ Router.map(function () {
 		data: function () {
 			if (Meteor.user()) {
 				if (Meteor.user().profile.initialized) {
-					return Chores.find({house: Meteor.user().profile.house});
+					return Chores.find({house_id: Meteor.user().profile.house});
 				}
 			}
 		}

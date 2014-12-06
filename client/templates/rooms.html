@@ -1,0 +1,8 @@
+<template name="rooms">
+	<h3>Public space in house:</h3>
+	<ul>
+		{{#each rooms}}
+		<li>{{name}} <button class="delete-room" id="{{name}}">&times;</button></li>
+		{{/each}}
+	</ul>
+</template>

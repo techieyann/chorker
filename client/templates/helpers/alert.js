@@ -22,7 +22,7 @@ alert = function (level, message, length) {
 	else alertTimeoutId = Meteor.setTimeout(clearAlert, 10000);
 };
 
-clearAlert = function (level, message) {
+clearAlert = function () {
 	Session.set("alertLevel", null);
 	Session.set("alertMessage", null);
 

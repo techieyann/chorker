@@ -3,6 +3,18 @@
 		<div class="form-group">
 			<label for="chore-name">Name:</label>
 			<input id="chore-name" name="choreName" type="text" placeholder="Enter a chore name">
+			<label for="chore-room">in Room:</label>
+			<select id="chore-room" name="choreRoom">
+				{{#each rooms}}
+				<option value="{{name}}">{{name}}</option>
+				{{/each}}
+				<option value="other">other</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="chore-desc">Description:</label>
+			<textarea id="chore-desc" name="choreDesc" cols="30"></textarea>
 		</div>
 
 		<button class="btn" type="submit">Create</button>

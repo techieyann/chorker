@@ -37,7 +37,10 @@ Template.newHouseForm.events = {
 		var options = {
 			name: parsedData.houseName,
 			pass: parsedData.housePass1,
-			owner: Meteor.user()._id
+			owner: Meteor.user()._id,
+			rooms: [{
+				name: 'other'
+			}]
 		};
 		Meteor.call('createHouse', options, function (err, id) {
 			if (err) {

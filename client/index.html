@@ -4,9 +4,10 @@
 </head>
 
 <template name="index">
-		<nav class="navbar navbar-default" role="navigation">
-			{{> yield region="navbar"}}
-		</nav>
+	<nav class="navbar navbar-default" role="navigation">
+		{{> yield region="navbar"}}
+	</nav>
+	{{> modal}}
 	<div class="container-fluid">
 
 		{{> alert}}
