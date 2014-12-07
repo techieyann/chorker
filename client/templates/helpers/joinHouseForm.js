@@ -1,7 +1,7 @@
 Template.joinHouseForm.events = {
 	'submit .join-house-form': function (e) {
 		e.preventDefault();
-		var pass = $('#pass').val();
+		var pass = sanitizeInput($('#pass').val());
 		if (!pass) {
 			alert("warning", "Join House Error: Password required.");
 			$('#pass').focus();

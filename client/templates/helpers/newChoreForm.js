@@ -11,11 +11,7 @@ Template.newChoreForm.events = {
 	'submit #new-chore-form': function (e) {
 		e.preventDefault();
 		var formData = $('#new-chore-form').serializeArray();
-
-		var parsedData = {};
-		for(var i in formData) {
-			parsedData[formData[i].name] = formData[i].value;
-		}
+		var parsedData = parseFormData(formData);
 
 		if (parsedData.choreName == '') {
 			alert("warning", "New Chore Error: Name required.");

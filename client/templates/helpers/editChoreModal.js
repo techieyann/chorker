@@ -23,10 +23,8 @@ Template.editChoreModalFooter.events = {
 	'click #edit': function (e) {
 		var formData = $('#edit-chore-form').serializeArray();
 
-		var parsedData = {};
-		for(var i in formData) {
-			parsedData[formData[i].name] = formData[i].value;
-		}
+		var parsedData = parseFormData(formData);
+
 		if (parsedData.choreName == '') {
 			alert("warning", "Edit Chore Error: Name required.");
 			$('#chore-name').focus();

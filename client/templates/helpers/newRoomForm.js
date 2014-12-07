@@ -2,7 +2,8 @@ Template.newRoomForm.events = {
 	'submit #new-room-form': function (e) {
 		e.preventDefault();
 
-		var roomName = $('#new-room').val();
+		var roomName = sanitizeInput($('#new-room').val());
+		roomName = roomName.replace('-',' ');
 		if (roomName == '') {
 			alert("warning", "New Room Warning: Name for room/space is required");
 			$('#new-room').focus();

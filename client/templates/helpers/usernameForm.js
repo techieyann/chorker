@@ -11,7 +11,7 @@ Template.usernameForm.helpers({
 Template.usernameForm.events = {
 	'submit #username-form': function (e) {
 		e.preventDefault();
-		var name = $('#username-input').val();
+		var name = sanitizeInput($('#username-input').val());
 		if (name == '') {
 
 			alert("warning", "Change Username Warning: Name is required");

@@ -3,10 +3,8 @@ Template.newHouseForm.events = {
 		e.preventDefault();
 		var formData = $('#new-house-form').serializeArray();
 
-		var parsedData = {};
-		for(var i in formData) {
-			parsedData[formData[i].name] = formData[i].value;
-		}
+		var parsedData = parseFormData(formData);
+
 		if (parsedData.houseName == '') {
 			alert("warning", "New House Error: Username required.");
 			$('#house-name').focus();

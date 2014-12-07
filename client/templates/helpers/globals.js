@@ -13,6 +13,18 @@ Template.registerHelper('houseOwner', function () {
 	}
 });
 
+parseFormData = function (serializedArray) {
+	var parsedData = {};
+	for(var i in formData) {
+		parsedData[formData[i].name] = sanitizeInput(formData[i].value);
+	}
+	return parsedData;
+};
+
+sanitizeInput = function (input) {
+	return input.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+}
+
 var round2Dec = function (num) {
 	return Math.round(num*100)/100;
 }
