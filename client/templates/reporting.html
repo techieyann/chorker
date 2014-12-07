@@ -1,9 +1,23 @@
 <template name="recentChores">
 	<h3>Recently Complete</h3>
+	<ol>
+		{{#each chores}}
+		{{> choreListing}}
+		{{/each}}
+	</ol>
 </template>
 
 <template name="leastRecentChores">
 	<h3>Least Recently Complete</h3>
+	<ol>
+		{{#each chores}}
+		{{> choreListing}}
+		{{/each}}
+	</ol>
+</template>
+
+<template name="choreListing">
+		<li><a href="/chores/{{_id}}">{{name}}</a> ({{room}})</li>
 </template>
 
 <template name="housemateStats">

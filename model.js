@@ -1,40 +1,18 @@
 Chores = new Mongo.Collection('chores');
 Houses = new Mongo.Collection('houses');
 
-Chores.allow({
-	insert: function() {
-		return true;
-	},
-	update: function () {
-		return true;
-	},
-	remove: function () {
-		return true;
-  }
-});
-
-Houses.allow({
-	insert: function() {
-		return true;
-	},
-	update: function () {
-		return true;
-	},
-	remove: function () {
-		return true;
-  }
-});
-
+Completed = new Mongo.Collection('completed');
 
 Meteor.methods({
-	doChore: function (choreID) {
-
+	doChore: function (options) {
+		Chores.update({_id:options.chore}, {$set:{last_completed:options.completed_on}});
+		return Completed.insert(options);
 	},
 	createChore: function (options) {
-		Chores.insert(options);
+		return Chores.insert(options);
 	},
 	deleteChore: function (options) {
-		Chores.remove({_id: options._id});
+		return Chores.remove({_id: options._id});
 	},
 	editChore: function (options) {
 		var id = options._id;

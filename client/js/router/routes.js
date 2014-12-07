@@ -24,6 +24,7 @@ Router.map(function () {
 				if (Meteor.user().profile.initialized) {
 					var houseId = Meteor.user().profile.house;
 					Meteor.subscribe('houses', houseId);
+					Meteor.subscribe('completed', houseId);
 					return Meteor.subscribe('chores', houseId); 
 				}
 			}
@@ -54,7 +55,9 @@ Router.map(function () {
 			if (Meteor.user()) {
 				if (Meteor.user().profile.initialized) {
 					Meteor.subscribe('houses');
-					return Meteor.subscribe('chores', Meteor.user().profile.house); 
+					var houseId = Meteor.user().profile.house;
+					Meteor.subscribe('completed', houseId);
+					return Meteor.subscribe('chores', houseId); 
 				}
 			}
 		},
@@ -68,6 +71,22 @@ Router.map(function () {
 	});
 	this.route('chore', {
 		path:'/chores/:_id',
-		controller: 'RegisteredController'
+		controller: 'RegisteredController',
+		waitOn: function () {
+			if (Meteor.user()) {
+				if (Meteor.user().profile.initialized) {
+					var houseId = Meteor.user().profile.house;
+					Meteor.subscribe('completed', houseId);
+					return Meteor.subscribe('chores', houseId); 
+				}
+			}
+		},
+		data: function () {
+			if (Meteor.user()) {
+				if (Meteor.user().profile.initialized) {
+					return Chores.findOne({_id: this.params._id});
+				}
+			}
+		}
 	});
 });

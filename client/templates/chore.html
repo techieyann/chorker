@@ -1,3 +1,11 @@
 <template name="chore">
-	{{name}}
+	{{#with chore}}
+	<p>{{name}} ({{room}})</p> 
+	<p>{{desc}}</p>
+	{{/with}}
+	<ul>
+		{{#each completed}}
+		<li>Completed by {{username}} on {{completed_on}}</li>
+		{{/each}}
+	</ul>
 </template>
