@@ -3,11 +3,11 @@
 		{{#if houses}}
 		<div class="col-sm-5">
 			<h4>Choose your House:</h4>	
-
+			<ul>
 				{{#each houses}}
-				<a class="join-house" href="#" id="{{_id}}">{{name}}</a>
+				<li><a class="join-house" href="#" id="{{_id}}">{{name}}</a></li>
 				{{/each}}
-
+			</ul>
 		</div>
 		<div class="col-sm-1"><h1>or</h1></div>
 		{{/if}}
