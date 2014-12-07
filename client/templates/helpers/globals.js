@@ -22,7 +22,7 @@ parseFormData = function (formData) {
 };
 
 sanitizeInput = function (input) {
-	return input.replace(/[\-\[\]{}()*+;\\\^$|#]/g, "\\$&");
+	return input.replace(/[\-\[\]{}*+;\\\^$|#]/g, "\\$&");
 }
 
 var round2Dec = function (num) {
