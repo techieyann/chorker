@@ -4,6 +4,11 @@
 .text-right{
 		text-align:right;
 }
+.float-right{
+		float:right;
+}
+
+/*loginButtons fixes*/
 #login-buttons{
 		line-height:3.5;
 }
@@ -20,6 +25,7 @@
 .login-li{
 		padding-right:20px;
 }
-.float-right{
-		float:right;
+
+.accordian-button{
+		margin-top:-5px;
 }

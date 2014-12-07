@@ -29,19 +29,5 @@ Template.chores.helpers({
 		if (this) {
 			return this;
 		}
-	},
-	owner: function () {
-		if (Meteor.user().profile.initialized) {
-
-			var house = Session.get("house");
-			if (house) {
-				if (house.owner == Meteor.user()._id) {
-					return true;
-				}
-			}
-			if (this) {
-				console.log(this);
-			}
-		}
 	}
 });

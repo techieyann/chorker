@@ -28,19 +28,22 @@
 					{{name}} ({{room}})
         </a>
 				<div class="float-right">
-					{{#if owner}}
-					<div class="button-group">
-						<button class="edit-chore" id="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button>
-						<button class="delete-chore" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
-					</div>
-					{{/if}}
 
-					<button class="complete-chore" id="{{_id}}"><span class="glyphicon glyphicon-ok"></span></button>
+
+					<button class="btn btn-primary complete-chore accordian-button" id="{{_id}}"><span class="glyphicon glyphicon-ok"></span></button>
+
+
 				</div>
       </h4>
     </div>
     <div id="collapse-{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{_id}}">
       <div class="panel-body">
+					<div class="btn-group float-right">
+						<button type="button" class="btn btn-default edit-chore" id="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button>
+					{{#if choreOwner}}
+						<button type="button" class="btn btn-default delete-chore" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
+					{{/if}}
+					</div>
 				<p>{{desc}}</p>
 				{{#if lastCompleted}}
 				<p>Last done on {{lastCompleted}} by {{lastCompletedBy}}</p>
@@ -59,7 +62,7 @@
 				</a>
 				{{#if filters}}
 				<div class="float-right">
-					<button class="btn btn-default" id="clear-filters">Clear &times;</button>
+					<button class="btn accordian-button" id="clear-filters">Clear &times;</button>
 				</div>
 				{{/if}}
 			</h4>

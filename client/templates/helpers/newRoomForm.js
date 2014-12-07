@@ -20,7 +20,7 @@ Template.newRoomForm.events = {
 						return true;
 					}
 				});
-				if (index >= -1) {
+				if (index >= 0) {
 					alert("danger", "New Room Error: '"+roomName+"' already taken");
 					$('#new-room').val('');
 					$('#new-room').focus();

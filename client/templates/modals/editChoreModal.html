@@ -1,0 +1,32 @@
+<template name="editChoreModalHeader">
+	<h4 class="modal-title text-center">Are you sure you want to edit this chore?</h4>
+</template>
+
+<template name="editChoreModalBody">
+	<form id="edit-chore-form" role="form">
+		<div class="form-group">
+			<label for="chore-name">Name:</label>
+			<input id="chore-name" name="choreName" type="text" placeholder="Enter a chore name" value="{{name}}">
+			<label for="chore-room">in Room:</label>
+			<select id="chore-room" name="choreRoom">
+				<option value="other">other</option>
+				{{#each rooms this}}
+				<option {{selectedRoom}} value="{{name}}">{{name}}</option>
+				{{/each}}
+
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="chore-desc">Description:</label>
+			<textarea id="chore-desc" name="choreDesc" cols="30">{{desc}}</textarea>
+		</div>
+
+
+	</form>
+</template>
+
+<template name="editChoreModalFooter">
+<button id="cancel" class="btn">Cancel</button>
+<button id="edit" class="btn">Edit</button>
+</template>

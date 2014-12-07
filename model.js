@@ -33,6 +33,18 @@ Meteor.methods({
 	createChore: function (options) {
 		Chores.insert(options);
 	},
+	deleteChore: function (options) {
+		Chores.remove({_id: options._id});
+	},
+	editChore: function (options) {
+		var id = options._id;
+		updatedChore = {
+			desc: options.choreDesc,
+			name: options.choreName,
+			room: options.choreRoom
+		};
+		Chores.update({_id: id}, {$set: updatedChore});
+	},
 	joinHouse: function (options) {
 
 		var house = Houses.findOne({_id: options.id});
