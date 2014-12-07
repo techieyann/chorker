@@ -13,7 +13,7 @@ Template.registerHelper('houseOwner', function () {
 	}
 });
 
-parseFormData = function (serializedArray) {
+parseFormData = function (formData) {
 	var parsedData = {};
 	for(var i in formData) {
 		parsedData[formData[i].name] = sanitizeInput(formData[i].value);
