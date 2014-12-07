@@ -7,16 +7,19 @@ BaseController = RouteController.extend({
 });
 
 RegisteredController = BaseController.extend({
-	onBeforeAction: function () {
+	subscriptions: function () {
+
 		if (Meteor.user()) {
 			if (Meteor.user().profile.initialized) {
-				Session.set("house", Houses.findOne(Meteor.user().profile.house));
-		 }
-			this.next();
+				var houseId = Meteor.user().profile.house;
+				this.wait(Meteor.subscribe('houses', houseId));
+				this.wait(Meteor.subscribe('completed', houseId));
+				this.wait(Meteor.subscribe('chores', houseId)); 
+				if(this.ready()) this.render();
+			}
 		}
-		else {
-			alert("info", "please login to access this page");
-			Router.go("welcome");
-		}
+		this.render('loading');
+
+
 	}
 });

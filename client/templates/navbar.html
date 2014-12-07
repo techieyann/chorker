@@ -14,8 +14,11 @@
           <div id="navbar" class="navbar-collapse collapse">
 
             <ul class="nav navbar-nav navbar-right">
+							{{#if currentUser}}
 							<li class="text-right {{activeNav '/house'}}"><a href="{{pathFor route='house'}}">House</a></li>
 							<li class="text-right {{activeNav '/chore'}}"><a href="{{pathFor route='chores'}}">Chores</a></li>
+							<li class="text-right {{activeNav '/profile'}}"><a href="{{pathFor route='profile'}}">Profile</a></li>
+							{{/if}}
 							<li class="text-right login-li">{{>loginButtons}}</li>
             </ul>
           </div><!--/.nav-collapse -->

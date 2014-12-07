@@ -11,6 +11,7 @@ Template.deleteChoreModalFooter.events = {
 					return;
 				}
 				$('#modal').modal('hide');
+				Router.go('/chores');
 			});
 		}
 	}

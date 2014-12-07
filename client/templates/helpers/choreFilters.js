@@ -23,7 +23,7 @@ clearChoreFilters = function (e) {
 	Session.set("choreSearchQuery", '');
 	Session.set("choreFiltersActive", false);
 	$('#search').val('');
-	$('.room-filter').removeClass('active')
+	$('.room-filter, .due-filter').removeClass('active')
 };
 
 Template.choreFilters.events = {
@@ -56,8 +56,23 @@ Template.choreFilters.events = {
 		else {
 			removeFilter('room');
 			$('.room-filter').removeClass('active');
-			$('#'+roomFilter).addClass('active');
+			roomButton.addClass('active');
 			addFilter('room');
+		}
+	},
+	'click .due-filter': function (e) {
+		var dueFilter = e.target.id;
+		var dueButton = $('#'+dueFilter);
+		if (dueButton.hasClass('active')) {
+			removeFilter('due');
+			dueButton.removeClass('active');
+			$('#heading-filters').focus();
+		}
+		else {
+			removeFilter('due');
+			$('.due-filter').removeClass('active');
+			dueButton.addClass('active');
+			addFilter('due');
 		}
 	}
 };

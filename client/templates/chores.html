@@ -1,22 +1,31 @@
 <template name="chores">
 	<div class="row">
-		{{#if chores}}
-		<div class="col-sm-7">
+		{{#unless houseOwner}}
+		<div class="col-sm-3 text-right">
+			<button class="btn btn-default" id="create-new-chore">New Chore</button><br>
+		</div>
+		{{/unless}}
+
+		<div class="col-sm-6">
+			
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">	
 				{{> choreFilters}}
+				{{#if currentUser}}
 				{{#each chores}}
 				{{> choreTab}}
 				{{/each}}
+				{{/if}}
 			</div>
 		</div>
 
-		{{/if}}
+		{{#if houseOwner}}
 		<div class="col-sm-5">
 			<div class="well">
 					 <h4>Create a new Chore:</h4>
 					 {{> newChoreForm}}
 			</div>
 		</div>
+		{{/if}}
 	</div>
 </template>
 
@@ -24,14 +33,21 @@
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="heading-{{_id}}">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{_id}}" aria-expanded="false" aria-controls="collapse-{{_id}}">
-					{{name}} ({{room}})
-        </a>
-				<div class="float-right">
-					<button class="btn {{buttonClass}} complete-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-ok"></span></button>
+				<div class="row">
+					<div class="col-xs-7 col-sm-8 col-md-9">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{_id}}" aria-expanded="false" aria-controls="collapse-{{_id}}">
+							{{name}} ({{room}})
+						</a>
+					</div>
+					<div class="col-xs-5 col-sm-4 col-md-3">
+						<div class="btn-group float-right">
+							<button class="btn btn-default goto-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-share-alt"></span></button>
+							<button class="btn {{buttonClass}} complete-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-ok"></span></button>
+						</div>
+					</div>
 				</div>
       </h4>
-    </div>
+			</div>
     <div id="collapse-{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{_id}}">
       <div class="panel-body">
 					<div class="btn-group float-right">
@@ -41,9 +57,6 @@
 					{{/if}}
 					</div>
 				<p>{{desc}}</p>
-				{{#if lastCompleted}}
-				<p>Last done on {{lastCompleted}} by {{lastCompletedBy}}</p>
-				{{/if}}
       </div>
     </div>
   </div>	
@@ -65,27 +78,40 @@
 		</div>
 		<div id="collapse-filters" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-filters">
 			<div class="panel-body">
-				<form id="chore-filter-search-form" role="form" class="form-inline">
-					<div class="input-group">
-						{{#if searchFilter}}
-						<span class="input-group-btn">
-							<button class="btn btn-default" id="clear-search"><span>&times;</span></button>
-						</span>
-						{{/if}}
-						<input id="search" class="form-control" name="query" type="text" value="{{searchQuery}}">
-						<span class="input-group-btn">
-							<button class="btn btn-default" value="submit"><span class="glyphicon glyphicon-search"></span></button>
-						</span>
-					</div>
-				</form>
-				<br>
-				<div class="btn-group">
-					{{#each rooms}}
-					<button class="btn btn-default room-filter" id="{{spacesToHyphens name}}">{{name}}</button>
-					{{/each}}
-					<button class="btn btn-default room-filter" id="other">other</button>
+				<div class="row text-center">
+					<form id="chore-filter-search-form" role="form" class="form-inline">
+						<div class="input-group">
+							{{#if searchFilter}}
+							<span class="input-group-btn">
+								<button class="btn btn-default" id="clear-search"><span>&times;</span></button>
+							</span>
+							{{/if}}
+							<input id="search" class="form-control" name="query" type="text" value="{{searchQuery}}">
+							<span class="input-group-btn">
+								<button class="btn btn-default" value="submit"><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div>
+					</form>
 				</div>
-
+				<br>
+				<div class="row text-center">
+					<div class="btn-group">
+						{{#each rooms}}
+						<button class="btn btn-default room-filter" id="{{spacesToHyphens name}}">{{name}}</button>
+						{{/each}}
+						<button class="btn btn-default room-filter" id="other">other</button>
+					</div>
+				</div>
+				<br>
+				<div class="row text-center">
+					<div class="btn-group">
+						<button class="btn btn-success due-filter" id="success">Done</button>
+						<button class="btn btn-primary due-filter" id="primary">Due</button>
+						<button class="btn btn-warning due-filter" id="warning">Overdue</button>
+						<button class="btn btn-danger due-filter" id="danger">Late</button>
+						<button class="btn due-filter" id="never">Never</button>
+					</div>
+				</div>
 
 
 			</div>

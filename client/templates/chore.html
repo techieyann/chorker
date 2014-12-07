@@ -1,11 +1,38 @@
 <template name="chore">
 	{{#with chore}}
-	<p>{{name}} ({{room}})</p> 
-	<p>{{desc}}</p>
-	{{/with}}
-	<ul>
-		{{#each completed}}
-		<li>Completed by {{username}} on {{completed_on}}</li>
-		{{/each}}
-	</ul>
+	<div class="row">
+
+		<div class="col-sm-6 col-sm-offset-3 well">
+			<div class="btn-group float-right">
+				<button type="button" class="btn btn-default edit-chore" id="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button>
+				{{#if choreOwner}}
+				<button type="button" class="btn btn-default delete-chore" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
+				{{/if}}
+				<button class="btn {{buttonClass}} complete-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-ok"></span></button>
+			</div>
+			<p>{{name}} ({{room}})</p> 
+			<p>{{desc}}</p>
+		</div>
+
+	</div>
+
+	<div class="row">
+{{#if period}}
+		<div class="col-sm-4">
+			<p>Completed every {{period}} seconds</p>
+			<p>Completed every {{secondsToMinutes period}} minutes</p>
+			<p>Completed every {{secondsToHours period}} hours</p>
+			<p>Completed every {{secondsToDays period}} days</p>
+		</div>
+{{/if}}
+		
+		<div class="col-sm-8">
+			<ul>
+				{{#each completed}}
+				<li>Completed by {{username}} on {{completed_on}}</li>
+				{{/each}}
+			</ul>
+		</div>
+</div>
+{{/with}}
 </template>

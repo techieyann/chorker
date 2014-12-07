@@ -1,7 +1,7 @@
 Router.map(function () {
 	this.route('userInit', {
 		path: '/init',
-		controller: 'RegisteredController',
+		controller: 'BaseController',
 		subscription: function () {
 			this.subscribe('houses');
 		},
@@ -16,34 +16,24 @@ Router.map(function () {
 		path: '/',
 		controller: 'BaseController'
 	});
+	this.route('profile', {
+		path: '/profile',
+		controller: 'RegisteredController'
+	});
 	this.route('house', {
 		path: '/house',
 		controller: 'RegisteredController',
-		waitOn: function () {
-			if (Meteor.user()) {
-				if (Meteor.user().profile.initialized) {
-					var houseId = Meteor.user().profile.house;
-					Meteor.subscribe('houses', houseId);
-					Meteor.subscribe('completed', houseId);
-					return Meteor.subscribe('chores', houseId); 
-				}
-			}
-		},
 		data: function () {
-			if (Meteor.user()) {
-				if (Meteor.user().profile.initialized) {
-					return Chores.find({house: Meteor.user().profile.house});
+			var house = Session.get("house");
+			if (house) {
+					return Chores.find({house_id: house._id});
 				}
-			}
+			
 		}
 	});
 	this.route('manageHouse', {
 		path: '/house/:_id',
 		controller: 'RegisteredController',
-		waitOn: function () {
-			Meteor.subscribe('chores', this.params._id);
-			return Meteor.subscribe('houses', this.params._id);
-		},
 		data: function () {
 			return Houses.findOne(this.params._id);
 		}
@@ -51,42 +41,19 @@ Router.map(function () {
 	this.route('chores', {
 		path:'/chores',
 		controller: 'RegisteredController',
-		waitOn: function () {
-			if (Meteor.user()) {
-				if (Meteor.user().profile.initialized) {
-					Meteor.subscribe('houses');
-					var houseId = Meteor.user().profile.house;
-					Meteor.subscribe('completed', houseId);
-					return Meteor.subscribe('chores', houseId); 
-				}
-			}
-		},
 		data: function () {
-			if (Meteor.user()) {
-				if (Meteor.user().profile.initialized) {
-					return Chores.find({house_id: Meteor.user().profile.house});
+			var house = Session.get("house");
+			if (house) {
+					return Chores.find({house_id: house._id});
 				}
-			}
+			
 		}
 	});
 	this.route('chore', {
 		path:'/chores/:_id',
 		controller: 'RegisteredController',
-		waitOn: function () {
-			if (Meteor.user()) {
-				if (Meteor.user().profile.initialized) {
-					var houseId = Meteor.user().profile.house;
-					Meteor.subscribe('completed', houseId);
-					return Meteor.subscribe('chores', houseId); 
-				}
-			}
-		},
 		data: function () {
-			if (Meteor.user()) {
-				if (Meteor.user().profile.initialized) {
 					return Chores.findOne({_id: this.params._id});
-				}
-			}
 		}
 	});
 });

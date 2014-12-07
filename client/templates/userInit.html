@@ -3,11 +3,11 @@
 		{{#if houses}}
 		<div class="col-sm-5">
 			<h4>Choose your House:</h4>	
-			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+
 				{{#each houses}}
-				{{> joinHouseForm}}
+				<a class="join-house" href="#" id="{{_id}}">{{name}}</a>
 				{{/each}}
-			</div>
+
 		</div>
 		<div class="col-sm-1"><h1>or</h1></div>
 		{{/if}}

@@ -3,10 +3,13 @@
 </template>
 
 <template name="deleteChoreModalBody">
-{{name}} ({{room}}) -- {{desc}}
+	{{name}} ({{room}}) -- {{desc}}
+	{{#if times_completed}}
+	<p>It's been completed {{times_completed}} time(s){{#if period}} every ~{{secondsToHours period}} hour(s){{/if}}!</p>
+	{{/if}}
 </template>
 
 <template name="deleteChoreModalFooter">
-<button id="cancel" class="btn">Cancel</button>
-<button id="delete" class="btn">Delete</button>
+	<button id="cancel" class="btn">Cancel</button>
+	<button id="delete" class="btn">Delete</button>
 </template>

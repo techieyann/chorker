@@ -20,7 +20,12 @@ Template.joinHouseForm.events = {
 				}
 				return;
 			}
-			Router.go('house');
+			closeModal();
+			Router.go('/profile');
 		});
+	},
+	'click #cancel': function (e) {
+		e.preventDefault();
+		closeModal();
 	}
 };

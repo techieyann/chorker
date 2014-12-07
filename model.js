@@ -5,13 +5,23 @@ Completed = new Mongo.Collection('completed');
 
 Meteor.methods({
 	doChore: function (options) {
-		Chores.update({_id:options.chore}, {$set:{last_completed:options.completed_on}});
+		Chores.update({_id:options.chore}, {
+			$set: {
+				last_completed:options.completed_on, 
+				period:options.period
+			}, 
+			$inc: {
+				times_completed:1
+			}
+		});
+		delete options.period;
 		return Completed.insert(options);
 	},
 	createChore: function (options) {
 		return Chores.insert(options);
 	},
 	deleteChore: function (options) {
+		Completed.remove({chore: options._id});
 		return Chores.remove({_id: options._id});
 	},
 	editChore: function (options) {
