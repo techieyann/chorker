@@ -20,6 +20,7 @@
 		right:10px !important;
 		left:initial;
 		text-align:initial;
+		z-index: 9999;
 }
 .login-close-text{
 		line-height:1 !important;
