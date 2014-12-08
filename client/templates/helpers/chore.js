@@ -11,6 +11,9 @@ Template.chore.helpers({
 	buttonClass: function () {
 		return choreCompleteButtonClass(this);
 	},
+	buttonIcon: function () {
+		return choreCompleteButtonIcon(this);
+	},
 	choreOwner: function () {
 		return checkChoreOwner(this);
 	}
@@ -19,13 +22,41 @@ Template.chore.helpers({
 
 Template.chore.events = {
 	'click .complete-chore': function(e) {
-		if (this) completeChore(this);
+		var button = $('#'+e.target.id+'.complete-chore');
+		if (this) queueChore(this, button);
 	},
 	'click .edit-chore': function (e) {
 		if (this) editChoreModal(this);
 	},
 	'click .delete-chore': function (e) {
 		if (this) deleteChoreModal(this);
+	}
+};
+
+queueChore = function (chore, button) {
+	if (button.hasClass('pending')) {
+		var timeouts = Session.get("choreTimers");
+		var timeoutId = timeouts[chore._id];
+		if (timeoutId) {
+			Meteor.clearTimeout(timeoutId);
+			delete timeouts[chore._id];
+			Session.set("choreTimers", timeouts);
+			button.removeClass('pending');
+		}
+	}
+	else {
+		button.addClass('pending');
+
+		var timeoutId = Meteor.setTimeout(function () {
+			completeChore(chore);
+			var timeouts = Session.get("choreTimers");
+			delete timeouts[chore._id];
+			Session.set("choreTimers", timeouts);
+			button.removeClass('pending');
+		}, 10000);
+		var timeouts = Session.get("choreTimers");
+		timeouts[chore._id] = timeoutId;
+		Session.set("choreTimers", timeouts);		
 	}
 };
 
@@ -53,6 +84,7 @@ completeChore = function (chore) {
 				alert("danger", "Complete Chore Error: "+err.message);
 				return;
 			}
+			alert("success", "Completed Chore: "+chore.name+" ("+chore.room+")");
 		});
 	}
 };
@@ -91,14 +123,18 @@ choreCompleteButtonClass = function (chore) {
 	if (chore) {
 		var cC = choreClass(chore);
 		if (cC != '') buttonClass = 'btn-'+cC;
-		var lastComplete = Completed.findOne({chore:chore._id, user:Meteor.user()._id}, {sort: {completed_on: -1}});
-			if (lastComplete) {
-				if (moment().diff(lastComplete.completed_on, 'minutes') < 2) {
-				buttonClass = buttonClass + ' disabled';
-				}
-			}
 	}
 	return buttonClass;
+};
+
+choreCompleteButtonIcon = function (chore) {
+	if (chore) {
+		var pending = Session.get("choreTimers");
+		if (pending) {
+			if (pending[chore._id]) return 'glyphicon-ok-sign';
+		}
+	}
+	return 'glyphicon-ok';
 };
 
 checkChoreOwner = function (chore) {

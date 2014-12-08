@@ -4,12 +4,16 @@ Template.choreTab.helpers({
 	},
 	buttonClass: function () {
 		return choreCompleteButtonClass(this);
+	},
+	buttonIcon: function () {
+		return choreCompleteButtonIcon(this);
 	}
 });
 
 Template.choreTab.events = {
 	'click .complete-chore': function(e) {
-		if (this) completeChore(this);
+		var button = $('#'+e.target.id+'.complete-chore');
+		if (this) queueChore(this, button);
 	},
 	'click .goto-chore': function (e) {
 		if (this) Router.go('/chores/'+this._id);

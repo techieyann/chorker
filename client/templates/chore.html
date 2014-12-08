@@ -8,7 +8,7 @@
 				{{#if choreOwner}}
 				<button type="button" class="btn btn-default delete-chore" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
 				{{/if}}
-				<button class="btn {{buttonClass}} complete-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-ok"></span></button>
+				<button class="btn {{buttonClass}} complete-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon {{buttonIcon}}"></span></button>
 			</div>
 			<p>{{name}} ({{room}})</p> 
 			<p>{{desc}}</p>

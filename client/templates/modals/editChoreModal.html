@@ -5,10 +5,10 @@
 <template name="editChoreModalBody">
 	<form id="edit-chore-form" role="form">
 		<div class="form-group">
-			<label for="chore-name">Name:</label>
-			<input id="chore-name" name="choreName" type="text" placeholder="Enter a chore name" value="{{name}}">
-			<label for="chore-room">in Room:</label>
-			<select id="chore-room" name="choreRoom">
+			<label for="edit-chore-name">Name:</label>
+			<input id="edit-chore-name" name="choreName" type="text" placeholder="Enter a chore name" value="{{name}}">
+			<label for="edit-chore-room">in Room:</label>
+			<select id="edit-chore-room" name="choreRoom">
 				<option value="other">other</option>
 				{{#each rooms this}}
 				<option {{selectedRoom}} value="{{name}}">{{name}}</option>
@@ -18,8 +18,8 @@
 		</div>
 
 		<div class="form-group">
-			<label for="chore-desc">Description:</label>
-			<textarea id="chore-desc" name="choreDesc" cols="30">{{desc}}</textarea>
+			<label for="edit-chore-desc">Description:</label>
+			<textarea id="edit-chore-desc" name="choreDesc" cols="30">{{desc}}</textarea>
 		</div>
 
 
