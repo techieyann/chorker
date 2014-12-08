@@ -12,10 +12,16 @@
 }
 
 /*loginButtons fixes*/
-#login-buttons{
+#login-dropdown-list .dropdown-toggle{
 		line-height:3.5;
 }
-#login-dropdown-list{
+#login-dropdown-list .dropdown-menu{
+		float:right;
+}
+.login-li{
+		padding-right:20px;
+}
+/*#login-dropdown-list{
 		position: fixed !important;
 		right:10px !important;
 		left:initial;
@@ -25,10 +31,8 @@
 .login-close-text{
 		line-height:1 !important;
 		float:right !important;
-}
-.login-li{
-		padding-right:20px;
-}
+}*/
+
 
 .accordian-button{
 		margin-top:-5px;

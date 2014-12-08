@@ -7,10 +7,10 @@ meteor-platform
 insecure
 backbone
 accounts-password
-accounts-ui
 nemo64:bootstrap
 less
 jquery
 mrt:moment
 iron:router
+mrt:accounts-ui-bootstrap-3
 
