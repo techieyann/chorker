@@ -11,53 +11,49 @@ Template.choreFilters.helpers({
 		return Session.equals("choreFiltersActive", true);
 	},
 	searchFilter: function () {
-		return Session.get("choreFilters").indexOf('search') != -1;
+		return (Session.get("choreFilters").search ? true : false);
 	},
 	searchQuery: function () {
-		return Session.get("choreSearchQuery");
+		return Session.get("choreFilters").search;
+	},
+	activeRoom: function (room) {
+		return (Session.get("choreFilters").room == room.replace(' ', '-') ? 'active' : '');
+	},
+	activeDue: function (due) {
+		return (Session.get("choreFilters").due == due ? 'active' : '');
 	}
 });
 
 clearChoreFilters = function (e) {
-	Session.set("choreFilters", []);
-	Session.set("choreSearchQuery", '');
+	Session.set("choreFilters", {});
 	Session.set("choreFiltersActive", false);
-	$('#search').val('');
-	$('.room-filter, .due-filter').removeClass('active')
 };
 
 Template.choreFilters.events = {
 	'click #clear-filters': clearChoreFilters,
 	'click #clear-search': function (e) {
-		Session.set("choreSearchQuery", '');
+		e.preventDefault();
 		removeFilter('search');
-		$('#search').val('');
 	},
 	'submit #chore-filter-search-form': function (e) {
 		e.preventDefault();
 		var query = $('#search').val();
 		if (query) {
-			addFilter('search');
-			Session.set("choreSearchQuery", query);
+			addFilter('search', query);
 		}
 		else {
 			removeFilter('search');
-			Session.set("choreSearchQuery", '');
 		}
 	},
 	'click .room-filter': function (e) {
 		var roomFilter = e.target.id;
-		var roomButton = $('#'+roomFilter);
+		var roomButton = $('#'+roomFilter.replace(' ', '-'));
 		if (roomButton.hasClass('active')) {
 			removeFilter('room');
-			roomButton.removeClass('active');
-			$('#heading-filters').focus();
+			roomButton.blur();
 		}
 		else {
-			removeFilter('room');
-			$('.room-filter').removeClass('active');
-			roomButton.addClass('active');
-			addFilter('room');
+			addFilter('room', roomFilter);
 		}
 	},
 	'click .due-filter': function (e) {
@@ -65,44 +61,27 @@ Template.choreFilters.events = {
 		var dueButton = $('#'+dueFilter);
 		if (dueButton.hasClass('active')) {
 			removeFilter('due');
-			dueButton.removeClass('active');
-			$('#heading-filters').focus();
+			dueButton.blur();
 		}
 		else {
-			removeFilter('due');
-			$('.due-filter').removeClass('active');
-			dueButton.addClass('active');
-			addFilter('due');
+			addFilter('due', e.target.id);
 		}
 	}
 };
 
-
-
-var addFilter = function (filter) {
+var addFilter = function (filter, value) {
 	var filters = Session.get("choreFilters");
-	var index = filters.indexOf(filter);
-	if (index == -1) {
-		filters.push(filter);
-	}
+	filters[filter] = value;
 	Session.set("choreFilters", filters);
-	if (filters.length == 0) {
-		Session.set("choreFiltersActive",false);
-	}
-	else Session.set("choreFiltersActive",true);
-
+	Session.set("choreFiltersActive",true);
 };
 
 var removeFilter = function (filter) {
 	var filters = Session.get("choreFilters");
-	var index = filters.indexOf(filter);
-	if (index != -1) {
-		filters.splice(index, 1);
-	}
+	delete filters[filter];
 	Session.set("choreFilters", filters);
-	if (filters.length == 0) {
+	if (filters == {}) {
 		Session.set("choreFiltersActive",false);
 	}
 	else Session.set("choreFiltersActive",true);
-
 };

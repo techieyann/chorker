@@ -1,29 +1,27 @@
 Template.chores.helpers({
 	chores: function () {
 		if (Session.equals("choreFiltersActive", true)) {
-		var choreFilters = Session.get("choreFilters");		
+			var choreFilters = Session.get("choreFilters");		
 			var house = Session.get("house");
 
 			var filters = {};
 
-			if (choreFilters.indexOf('search') != -1) {
-				var query = Session.get("choreSearchQuery");
-				if (query) {
-					query = query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
-					regSearch = new RegExp(query, "i");
-					filters = {$or: [{'name': regSearch},{'desc': regSearch}]};
-				}
+			if (choreFilters.search) {
+				var query = choreFilters.search;
+				query = query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+				regSearch = new RegExp(query, "i");
+				filters = {$or: [{'name': regSearch},{'desc': regSearch}]};
 			}
-			if (choreFilters.indexOf('room') != -1) {
-				var room = $('.room-filter.active').attr('id');
+			if (choreFilters.room) {
+				var room = choreFilters.room;
 				room = room.replace('-', ' ');
 				filters['room'] = room;
 			}
 			filters['house_id'] = house._id;
 			var foundChores = Chores.find(filters);
-			if (choreFilters.indexOf('due') != -1) {
+			if (choreFilters.due) {
 				var dueChores = [];
-				var due = $('.due-filter.active').attr('id');
+				var due = choreFilters.due;
 				foundChores.forEach(function (chore) {					
 					if (chore.last_completed) {
 							var diff = moment().diff(chore.last_completed, 'seconds');

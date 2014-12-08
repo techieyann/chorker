@@ -97,19 +97,19 @@
 				<div class="row text-center">
 					<div class="btn-group">
 						{{#each rooms}}
-						<button class="btn btn-default room-filter" id="{{spacesToHyphens name}}">{{name}}</button>
+						<button class="btn btn-default room-filter {{activeRoom name}}" id="{{spacesToHyphens name}}">{{name}}</button>
 						{{/each}}
-						<button class="btn btn-default room-filter" id="other">other</button>
+						<button class="btn btn-default room-filter {{activeRoom 'other'}}" id="other">other</button>
 					</div>
 				</div>
 				<br>
 				<div class="row text-center">
 					<div class="btn-group">
-						<button class="btn btn-success due-filter" id="success">Done</button>
-						<button class="btn btn-primary due-filter" id="primary">Due</button>
-						<button class="btn btn-warning due-filter" id="warning">Overdue</button>
-						<button class="btn btn-danger due-filter" id="danger">Late</button>
-						<button class="btn due-filter" id="never">Never</button>
+						<button class="btn btn-success due-filter {{activeDue 'success'}}" id="success">Done</button>
+						<button class="btn btn-primary due-filter {{activeDue 'primary'}}" id="primary">Due</button>
+						<button class="btn btn-warning due-filter {{activeDue 'warning'}}" id="warning">Overdue</button>
+						<button class="btn btn-danger due-filter {{activeDue 'danger'}}" id="danger">Late</button>
+						<button class="btn due-filter {{activeDue 'never'}}" id="never">Never</button>
 					</div>
 				</div>
 
