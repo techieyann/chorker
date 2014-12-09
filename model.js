@@ -114,13 +114,15 @@ Meteor.methods({
 		throw new Meteor.Error('Could not find specified house');
 	},
 	changeUsername: function (name) {
-		Meteor.users.update({_id: Meteor.user()._id}, {$set:{
+		var userId = Meteor.user()._id
+		Meteor.users.update({_id: userId}, {$set:{
 			"profile.username":name
 		}});
 		var house = Houses.findOne({_id: Meteor.user().profile.house});
 		if (house) {
 			var mates = house.members;
-			mates[Meteor.user()._id] = name;
+			if (mates) mates[userId] = name;
+			else mates = { userId: name };
 			return Houses.update({_id: house._id}, {$set: {members: mates}});
 		}
 	}
