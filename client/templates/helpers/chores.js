@@ -58,6 +58,15 @@ Template.chores.helpers({
 
 			return this;
 		}
+	},
+	anyChores: function () {
+		var house = Session.get("house");
+		if (house) { 
+			if (Chores.findOne({house_id:house._id})) {
+				return true;
+			}
+		}
+		return false;
 	}
 });
 

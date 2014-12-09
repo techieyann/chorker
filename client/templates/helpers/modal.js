@@ -22,13 +22,15 @@ openModal = function (header, body, footer, data) {
 };
 
 closeModal = function () {
-	Session.set("modal-header", '');
-	Session.set("modal-body", '');
-	Session.set("modal-footer", '');
-	Session.set("modal-data", '');
-	hideModal();
+	$('#modal').modal('hide');
 };
 
-hideModal = function () {
-	$('#modal').modal('hide');
-}
+Template.modal.rendered = function () {
+	$('#modal').on('hidden.bs.modal', function () {
+		Session.set("modal-header", '');
+		Session.set("modal-body", '');
+		Session.set("modal-footer", '');
+		Session.set("modal-data", '');
+	});
+};
+

@@ -7,8 +7,19 @@ Template.profile.helpers({
 		}
 		return false;
 	}
-
 });
+
+changeUsernameModal = function () {
+	openModal('usernameModalHeader','usernameForm','', null);
+	Meteor.setTimeout(function(){$('#username-input').focus();},500);
+};
+
+Template.profile.events = {
+	'click #change-username': changeUsernameModal
+};
+
+
+
 
 Template.userInit.helpers({
 	houses: function () {

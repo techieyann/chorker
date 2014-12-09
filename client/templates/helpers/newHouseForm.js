@@ -32,10 +32,16 @@ Template.newHouseForm.events = {
 			$('#house-pass1').focus();
 			return;
 		}
+		var memberArray = {};
+		var username = Meteor.user().profile.username;
+		if (!username) username = Meteor.user().emails[0].address;
+		memberArray[Meteor.user()._id] = username;
 		var options = {
 			name: parsedData.houseName,
 			pass: parsedData.housePass1,
-			owner: Meteor.user()._id
+			owner: Meteor.user()._id,
+			members: memberArray,
+			created: moment().format()
 		};
 		Meteor.call('createHouse', options, function (err, id) {
 			if (err) {

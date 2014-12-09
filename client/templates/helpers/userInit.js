@@ -1,6 +1,9 @@
 Template.userInit.rendered = function () {
-	openModal('usernameModalHeader','usernameForm','usernameModalFooter');
-	Meteor.setTimeout(function(){$('#username-input').focus();},500);
+	if (Meteor.user().profile.initialized) {
+		Router.go("/profile");
+		return;
+	}
+	changeUsernameModal();
 };
 
 Template.userInit.events = {

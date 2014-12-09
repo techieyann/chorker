@@ -10,12 +10,12 @@ RegisteredController = BaseController.extend({
 
 		if (Meteor.user()) {
 			if (Meteor.user().profile.initialized) {
-				var houseId = Meteor.user().profile.house;
+				var houseId = Meteor.user().profile.house_id;
 				this.wait(Meteor.subscribe('houses', houseId));
 				this.wait(Meteor.subscribe('completed', houseId));
 				this.wait(Meteor.subscribe('chores', houseId)); 
 				if(this.ready()) {
-					Session.set("house", Houses.findOne(Meteor.user().profile.house));
+					Session.set("house", Houses.findOne(houseId));
 					this.render();
 				}
 			}

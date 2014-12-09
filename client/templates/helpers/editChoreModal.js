@@ -2,14 +2,16 @@ Template.editChoreModalBody.helpers({
 	rooms: function (chore) {
 		var house = Session.get("house");
 		if (house) {
-			house.rooms.some(function (val, key) {
-				if (val.name == chore.room) {
-					house.rooms[key].selected = 1;
-					return true;
-				}
-			});
-			return house.rooms;
+			if (house.rooms) {
+				house.rooms.some(function (val, key) {
+					if (val.name == chore.room) {
+						house.rooms[key].selected = 1;
+						return true;
+					}
+				});
+			}
 		}
+		return house.rooms;
 	},
 	selectedRoom: function () {
 		if (this.selected) return 'selected';

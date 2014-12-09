@@ -11,7 +11,7 @@ Template.usernameForm.helpers({
 Template.usernameForm.events = {
 	'submit #username-form': function (e) {
 		e.preventDefault();
-		var name = sanitizeInput($('#username-input').val());
+		var name = $('#username-input').val();
 		if (name == '') {
 
 			alert("warning", "Change Username Warning: Name is required");
@@ -20,11 +20,14 @@ Template.usernameForm.events = {
 
 		}
 		if (Meteor.user()) {
-			Meteor.users.update({_id: Meteor.user()._id}, {$set:{
-				"profile.username":name
-			}});
-			closeModal();
-			alert("success", "Successfully changed username to '"+name+"'");
+			Meteor.call('changeUsername', name, function (err) {
+				if (err) {
+					alert("danger", "Change Username Error: "+err.message);
+					return;
+				}
+				closeModal();
+				alert("success", "Successfully changed username to '"+name+"'");
+			});
 		}
 	}
 };

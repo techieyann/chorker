@@ -42,7 +42,7 @@ Template.newChoreForm.events = {
 				$('#chore-name').val('');
 				$('#chore-desc').val('');
 				$('#chore-name').focus();
-				hideModal();
+				closeModal();
 			});
 		}
 

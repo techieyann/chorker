@@ -5,24 +5,21 @@
 			<button class="btn btn-default" id="create-new-chore">New Chore</button><br>
 		</div>
 		{{/unless}}
-
-		<div class="col-sm-6">
-			
+		{{#if anyChores}}
+		<div class="col-sm-6">			
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">	
 				{{> choreFilters}}
-				{{#if currentUser}}
 				{{#each chores}}
 				{{> choreTab}}
 				{{/each}}
-				{{/if}}
 			</div>
 		</div>
-
+		{{/if}}
 		{{#if houseOwner}}
 		<div class="col-sm-5">
 			<div class="well">
-					 <h4>Create a new Chore:</h4>
-					 {{> newChoreForm}}
+				<h4>Create a new Chore:</h4>
+				{{> newChoreForm}}
 			</div>
 		</div>
 		{{/if}}
@@ -112,8 +109,6 @@
 						<button class="btn due-filter {{activeDue 'never'}}" id="never">Never</button>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>

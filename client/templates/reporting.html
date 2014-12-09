@@ -1,3 +1,10 @@
+<template name="housemates">
+	<h3>Housemates:</h3>
+	{{#each housemate}}
+	<p><a href="/profile/{{id}}">{{name}}</a></p>
+	{{/each}}
+</template>
+
 <template name="recentChores">
 	<h3>Recently Complete</h3>
 	<ol>
@@ -20,6 +27,4 @@
 		<li><a href="/chores/{{_id}}">{{name}}</a> ({{room}})</li>
 </template>
 
-<template name="housemateStats">
-	<h3>Housemate Stats</h3>
-</template>
+

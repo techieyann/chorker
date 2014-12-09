@@ -3,13 +3,13 @@
 	{{#if isOwner}}<a href="{{pathFor 'house'}}/{{houseId}}">Manage house</a>{{/if}}
 	<div class="row">
 		<div class="col-sm-4">
+			{{> housemates}}
+		</div>
+		<div class="col-sm-4">
 			{{> recentChores}}
 		</div>
 		<div class="col-sm-4">
 			{{> leastRecentChores}}
-		</div>
-		<div class="col-sm-4">
-			{{> housemateStats}}
 		</div>
 	</div>
 

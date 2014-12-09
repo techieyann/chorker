@@ -43,7 +43,11 @@ Meteor.methods({
 					"profile.initialized":true,
 					"profile.house":options.id
 				}});
-				return;
+				var mates = house.members;
+				var username = Meteor.user().profile.username;
+				if (!username) username = Meteor.user().emails[0].address;
+				mates[Meteor.user()._id] = username;
+				return Houses.update({_id: house._id},{$set: {members: mates}});
 			}
 			else { throw new Meteor.Error('Incorrect house Password');}
 		}
@@ -108,5 +112,16 @@ Meteor.methods({
 			else throw new Meteor.Error('Could not find specified room');
 		}
 		throw new Meteor.Error('Could not find specified house');
+	},
+	changeUsername: function (name) {
+		Meteor.users.update({_id: Meteor.user()._id}, {$set:{
+			"profile.username":name
+		}});
+		var house = Houses.findOne({_id: Meteor.user().profile.house});
+		if (house) {
+			var mates = house.members;
+			mates[Meteor.user()._id] = name;
+			return Houses.update({_id: house._id}, {$set: {members: mates}});
+		}
 	}
 });
