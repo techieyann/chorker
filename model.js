@@ -1,7 +1,7 @@
 Chores = new Mongo.Collection('chores');
 Houses = new Mongo.Collection('houses');
-
 Completed = new Mongo.Collection('completed');
+
 
 Meteor.methods({
 	doChore: function (options) {

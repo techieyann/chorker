@@ -22,10 +22,10 @@ openModal = function (header, body, footer, data) {
 };
 
 closeModal = function () {
-	Session.set("modal-header", null);
-	Session.set("modal-body", null);
-	Session.set("modal-footer", null);
-	Session.set("modal-data", null);
+	Session.set("modal-header", '');
+	Session.set("modal-body", '');
+	Session.set("modal-footer", '');
+	Session.set("modal-data", '');
 	hideModal();
 };
 

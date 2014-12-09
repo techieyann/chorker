@@ -1,11 +1,14 @@
 <template name="joinHouseForm">
 	<form id="{{_id}}" class="join-house-form" role="form-inline">
 		<div class="input-group">
-			<label for="pass">Password for {{name}}: </label>
-			<input id="pass" name="pass" type="password" placeholder="Enter Password">
+			<label for="pass">Password: </label>
+			<input id="pass" name="pass" type="password">
 			<button class="btn btn-default" type="submit">Join</button>
-			<button class="btn btn-default" id="cancel">Cancel</button>
 		</div>																							
 
 	</form>
+</template>
+
+<template name="joinHouseModalHeader">
+	Please enter the password to join the house: {{name}}
 </template>

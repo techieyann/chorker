@@ -1,7 +1,6 @@
 BaseController = RouteController.extend({
 	onBeforeAction: function () {
 		Session.set('route', this.route._path);
-		clearAlert();
 		this.next();
 	}
 });
@@ -15,7 +14,10 @@ RegisteredController = BaseController.extend({
 				this.wait(Meteor.subscribe('houses', houseId));
 				this.wait(Meteor.subscribe('completed', houseId));
 				this.wait(Meteor.subscribe('chores', houseId)); 
-				if(this.ready()) this.render();
+				if(this.ready()) {
+					Session.set("house", Houses.findOne(Meteor.user().profile.house));
+					this.render();
+				}
 			}
 		}
 		this.render('loading');

@@ -29,7 +29,7 @@ Template.usernameForm.events = {
 	}
 };
 
-Template.usernameFormModalFooter.events = {
+Template.usernameModalFooter.events = {
 	'click #close': function (e) {
 		alert("info", "You can always change your username in your profile");
 		closeModal();

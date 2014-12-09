@@ -25,9 +25,5 @@ Template.joinHouseForm.events = {
 			Router.go('/house');
 			alert("success", "Successfully joined "+that.name);
 		});
-	},
-	'click #cancel': function (e) {
-		e.preventDefault();
-		closeModal();
 	}
 };
