@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
 backbone
 accounts-password
 nemo64:bootstrap
@@ -13,4 +12,3 @@ jquery
 mrt:moment
 iron:router
 mrt:accounts-ui-bootstrap-3
-
