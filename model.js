@@ -1,5 +1,6 @@
 Chores = new Mongo.Collection('chores');
 Houses = new Mongo.Collection('houses');
+MyHouse = new Mongo.Collection('myHouse');
 Completed = new Mongo.Collection('completed');
 
 

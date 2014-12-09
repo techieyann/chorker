@@ -2,6 +2,10 @@ Meteor.publish('houses', function() {
 	return Houses.find(); 
 });
 
+Meteor.publish('myHouse', function (house) {
+	return Houses.find({_id: house});
+});
+
 Meteor.publish('chores', function (house) {
 	return Chores.find({house_id: house});
 });
