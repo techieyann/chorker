@@ -16,11 +16,9 @@ Template.editChoreModalBody.helpers({
 	}
 });
 
-Template.editChoreModalFooter.events = {
-	'click #cancel': function (e) {
-		$('#modal').modal('hide');
-	},
-	'click #edit': function (e) {
+Template.editChoreModalBody.events = {
+	'submit #edit-chore-form': function (e) {
+		e.preventDefault();
 		var formData = $('#edit-chore-form').serializeArray();
 
 		var parsedData = parseFormData(formData);

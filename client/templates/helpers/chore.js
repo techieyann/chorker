@@ -154,7 +154,7 @@ checkChoreOwner = function (chore) {
 	return false;
 };
 editChoreModal = function (chore) {
-	openModal('editChoreModalHeader', 'editChoreModalBody', 'editChoreModalFooter', chore);
+	openModal('editChoreModalHeader', 'editChoreModalBody', '', chore);
 };
 
 deleteChoreModal = function (chore) {
