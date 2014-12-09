@@ -1,6 +1,6 @@
 Template.housemates.helpers({
 	housemate: function () {
-		var members = Houses.findOne().members;
+		var members = Houses.findOne(Meteor.user().profile.house).members;
 		var housemates = [];
 		for (var key in members) {
 			housemates.push({
@@ -13,11 +13,11 @@ Template.housemates.helpers({
 });
 Template.recentChores.helpers({
 	chores: function () {
-		return Chores.find({},{sort: {last_completed: -1}, limit: 5});
+		return Chores.find({house_id: Meteor.user().profile.house},{sort: {last_completed: -1}, limit: 5});
 	}
 });
 Template.leastRecentChores.helpers({
 	chores: function () {
-		return Chores.find({},{sort: {last_completed: 1}, limit: 5});
+		return Chores.find({house_id: Meteor.user().profile.house},{sort: {last_completed: 1}, limit: 5});
 	}
 });
