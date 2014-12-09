@@ -19,7 +19,7 @@ alert = function (level, message, length) {
 	Session.set("alertMessage", message);
 
 	if (length != null)	alertTimeoutId = Meteor.setTimeout(clearAlert, length);
-	else alertTimeoutId = Meteor.setTimeout(clearAlert, 10000);
+	else alertTimeoutId = Meteor.setTimeout(clearAlert, 4000);
 };
 
 clearAlert = function () {

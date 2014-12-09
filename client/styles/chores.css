@@ -11,6 +11,18 @@
 		float:right;
 }
 
+#mainAlert{
+		position:fixed;
+		display:block;
+		top:20px;
+		width:90%;
+		margin-left:5%;
+		margin-right:5%;
+		z-index:9999;
+}
+
+/**/
+
 /*loginButtons fixes*/
 #login-dropdown-list .dropdown-toggle{
 		line-height:3.5;
@@ -23,18 +35,6 @@
 .login-li{
 		padding-right:20px;
 }
-/*#login-dropdown-list{
-		position: fixed !important;
-		right:10px !important;
-		left:initial;
-		text-align:initial;
-		z-index: 9999;
-}
-.login-close-text{
-		line-height:1 !important;
-		float:right !important;
-}*/
-
 
 .accordian-button{
 		margin-top:-5px;
