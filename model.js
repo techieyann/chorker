@@ -121,8 +121,8 @@ Meteor.methods({
 		var house = Houses.findOne({_id: Meteor.user().profile.house});
 		if (house) {
 			var mates = house.members;
-			if (mates) mates[userId] = name;
-			else mates = { userId: name };
+			if (! mates) mates = {};
+			mates[userId] = name;
 			return Houses.update({_id: house._id}, {$set: {members: mates}});
 		}
 	}
