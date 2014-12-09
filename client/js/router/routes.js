@@ -18,11 +18,19 @@ Router.map(function () {
 	});
 	this.route('profile', {
 		path: '/profile',
-		controller: 'RegisteredController'
+		controller: 'RegisteredController',
+		data: function () {
+			if (Meteor.user()) {
+				return Completed.find({user: Meteor.user()._id});
+			}
+		}
 	});
 	this.route('housemateProfile', {
 		path: '/profile/:_id',
-		controller: 'RegisteredController'
+		controller: 'RegisteredController',
+		data: function () {
+			return Completed.find({user: this.params._id});
+		}
 	});
 	this.route('house', {
 		path: '/house',

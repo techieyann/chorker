@@ -1,7 +1,7 @@
 <template name="housemates">
 	<h3>Housemates:</h3>
 	{{#each housemate}}
-	<p><a href="/profile/{{id}}">{{name}}</a></p>
+	<p><a href="/profile{{#unless self}}/{{id}}{{/unless}}">{{name}}</a></p>
 	{{/each}}
 </template>
 

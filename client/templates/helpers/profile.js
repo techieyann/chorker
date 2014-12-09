@@ -9,6 +9,17 @@ Template.profile.helpers({
 	}
 });
 
+Template.profileReporting.helpers({
+	completed: function () {
+		if (this) return this;
+	},
+	chore: function () {
+		if (this) {
+			return Chores.findOne(this.chore);
+		}
+	}
+});
+
 changeUsernameModal = function () {
 	openModal('usernameModalHeader','usernameForm','', null);
 	Meteor.setTimeout(function(){$('#username-input').focus();},500);

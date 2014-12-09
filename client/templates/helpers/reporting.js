@@ -9,6 +9,12 @@ Template.housemates.helpers({
 			});
 		}
 		return housemates;
+	},
+	self: function () {
+		if (this && Meteor.user()) {
+			if (this.id == Meteor.user()._id) return true;
+		}
+		return false;
 	}
 });
 Template.recentChores.helpers({
