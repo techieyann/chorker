@@ -80,7 +80,8 @@ var removeFilter = function (filter) {
 	var filters = Session.get("choreFilters");
 	delete filters[filter];
 	Session.set("choreFilters", filters);
-	if (filters == {}) {
+	
+	if (filters) {
 		Session.set("choreFiltersActive",false);
 	}
 	else Session.set("choreFiltersActive",true);
