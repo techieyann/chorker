@@ -8,7 +8,7 @@ Template.choreFilters.helpers({
 		}
 	},
 	filters: function () {
-		return Session.equals("choreFiltersActive", true);
+		return Session.get("choreFiltersActive");
 	},
 	searchFilter: function () {
 		return (Session.get("choreFilters").search ? true : false);
@@ -79,10 +79,11 @@ var addFilter = function (filter, value) {
 var removeFilter = function (filter) {
 	var filters = Session.get("choreFilters");
 	delete filters[filter];
+
 	Session.set("choreFilters", filters);
 	
-	if (filters) {
-		Session.set("choreFiltersActive",false);
+	if (Object.keys(filters).length) {
+		Session.set("choreFiltersActive",true);
 	}
-	else Session.set("choreFiltersActive",true);
+	else Session.set("choreFiltersActive",false);
 };
