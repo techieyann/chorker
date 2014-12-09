@@ -20,15 +20,18 @@ Router.map(function () {
 		path: '/profile',
 		controller: 'RegisteredController'
 	});
+	this.route('housemateProfile', {
+		path: '/profile/:_id',
+		controller: 'RegisteredController'
+	});
 	this.route('house', {
 		path: '/house',
 		controller: 'RegisteredController',
 		data: function () {
 			var house = Session.get("house");
 			if (house) {
-					return Chores.find({house_id: house._id});
-				}
-			
+				return Chores.find({house_id: house._id});
+			}		
 		}
 	});
 	this.route('manageHouse', {

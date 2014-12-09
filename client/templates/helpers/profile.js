@@ -19,8 +19,6 @@ Template.profile.events = {
 };
 
 
-
-
 Template.userInit.helpers({
 	houses: function () {
 		if (this) return this;
