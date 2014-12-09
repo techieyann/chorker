@@ -23,7 +23,15 @@ Template.usernameForm.events = {
 			Meteor.users.update({_id: Meteor.user()._id}, {$set:{
 				"profile.username":name
 			}});
+			closeModal();
 			alert("success", "Successfully changed username to '"+name+"'");
 		}
+	}
+};
+
+Template.usernameFormModalFooter.events = {
+	'click #close': function (e) {
+		alert("info", "You can always change your username in your profile");
+		closeModal();
 	}
 };

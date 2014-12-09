@@ -3,8 +3,17 @@
 		<div class="input-group">
 			<label for="username-input">Username: </label>
 			<input id="username-input" name="username" type="text" placeholder="Choose a username" value="{{username}}">
-			<button class="btn" value="submit">Submit</button>
 		</div>
-
+		<button class="btn" value="submit">Submit</button>
 	</form>
+</template>
+
+
+<template name="usernameFormModalHeader">
+Please choose a username.
+</template>
+
+
+<template name="usernameFormModalFooter">
+<button class="btn" id="close">I'll do it later</button>
 </template>

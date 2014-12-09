@@ -11,6 +11,7 @@ Template.joinHouseForm.events = {
 			id: e.target.id,
 			password: pass
 		};
+		var that=this;
 		Meteor.call('joinHouse', options, function (err) {
 			if (err) {
 				alert("danger", 'Join House Error: '+err.error);
@@ -21,7 +22,8 @@ Template.joinHouseForm.events = {
 				return;
 			}
 			closeModal();
-			Router.go('/profile');
+			Router.go('/house');
+			alert("success", "Successfully joined "+that.name);
 		});
 	},
 	'click #cancel': function (e) {
