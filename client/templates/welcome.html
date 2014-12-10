@@ -1,3 +1,8 @@
 <template name="welcome">
+	{{#if currentUser}}
+	<h3>Welcome back {{currentUser.profile.username}}</h3>
+	{{else}}
 	<h3>Yo what up how's it going?</h3>
+	<p>Please sign in/up above</p>
+	{{/if}}
 </template>

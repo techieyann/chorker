@@ -12,3 +12,5 @@ jquery
 mrt:moment
 iron:router
 mrt:accounts-ui-bootstrap-3
+mrt:chartjs
+

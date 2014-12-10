@@ -3,19 +3,61 @@
 		<div class="col-sm-7">
 			{{> profileReporting}}
 		</div>
-		<div class="col-sm-5">
+		<div class="col-sm-5 well">
+			<h3>Management:</h3>
 			<button class="btn btn-default" id="change-username">Change username</button>
 		</div>
 	</div>
 </template>
 
 <template name="profileReporting">
-	<ul>
-		{{#each completed}}
-		<li>Completed {{chore.name}} ({{chore.room}}) on {{completed_on}}</li>
-		{{/each}}
-	</ul>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">	
+		{{> profileCharts}}
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="heading-raw-list">
+				<h4 class="panel-title">
+					<div class="row">
+						<div class="col-xs-7 col-sm-8 col-md-9">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapse-raw-list" aria-expanded="false" aria-controls="collapse-raw-list">
+								Raw list
+							</a>
+						</div>
+					</div>
+				</h4>
+			</div>
+			<div id="collapse-raw-list" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-raw-list">
+				<div class="panel-body">
+					<ul>
+						{{#each completed}}
+						<li>Completed {{chore.name}} ({{chore.room}}) on {{completed_on}}</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+		</div>	
+
+
+	</div>
 </template>
 
-
+<template name="profileCharts">
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="heading-room-bar">
+			<h4 class="panel-title">
+				<div class="row">
+					<div class="col-xs-7 col-sm-8 col-md-9">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapse-room-bar" aria-expanded="false" aria-controls="collapse-room-bar">
+							Room Count
+						</a>
+					</div>
+				</div>
+			</h4>
+		</div>
+		<div id="collapse-room-bar" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-room-bar">
+			<div class="panel-body">
+				<canvas id="room-bar-chart" width="300px" height="200px"></canvas>
+			</div>
+		</div>
+	</div>	
+</template>
 
