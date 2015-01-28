@@ -1,7 +1,6 @@
 Router.configure({
 	layoutTemplate: 'index',
 	yieldTemplates: {
-		'myHeader': {to: 'header'},
 		'myNavbar': {to: 'navbar'},
 		'myFooter': {to: 'footer'}
 	},
