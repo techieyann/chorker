@@ -1,6 +1,5 @@
 Chores = new Mongo.Collection('chores');
 Houses = new Mongo.Collection('houses');
-MyHouse = new Mongo.Collection('myHouse');
 Completed = new Mongo.Collection('completed');
 
 
@@ -33,6 +32,11 @@ Meteor.methods({
 			room: options.choreRoom
 		};
 		Chores.update({_id: id}, {$set: updatedChore});
+	},
+	resetChores: function (options) {
+		var id = options.id;
+		Completed.remove({house: id});
+		Chores.update({house_id: id}, {$set: {last_completed: "", times_completed: 0, period: ""}}, {multi:true});
 	},
 	joinHouse: function (options) {
 
