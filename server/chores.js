@@ -1,10 +1,4 @@
-Meteor.publish('houses', function() {
-	return Houses.find(); 
-});
 
-Meteor.publish('myHouse', function (house) {
-	return Houses.find({_id: house});
-});
 
 Meteor.publish('chores', function (house) {
 	return Chores.find({house_id: house});
@@ -12,6 +6,14 @@ Meteor.publish('chores', function (house) {
 
 Meteor.publish('completed', function (house) {
 	return Completed.find({house: house});
+});
+
+Meteor.publish('houses', function() {
+	return Houses.find(); 
+});
+
+Meteor.publish('myHouse', function (house) {
+	return Houses.find({_id: house});
 });
 
 Accounts.onCreateUser(function (options, user) {

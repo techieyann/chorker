@@ -43,7 +43,7 @@ Router.map(function () {
 		path: '/house/:_id',
 		controller: 'RegisteredController',
 		data: function () {
-			return MyHouse.findOne();
+			return Houses.findOne();
 		}
 	});
 	this.route('chores', {
