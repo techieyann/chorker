@@ -1,3 +1,16 @@
+var dueTranslation = {
+	success: 'Done',
+	primary: 'Due',
+	warning: 'Overdue',
+	danger: 'Late',
+	never: 'Never'
+};
+
+var filterGlyph = {
+	due: 'time',
+	room: 'home',
+	search: 'search'
+}
 
 Template.choreFilters.helpers({
 	
@@ -21,6 +34,18 @@ Template.choreFilters.helpers({
 	},
 	activeDue: function (due) {
 		return (Session.get("choreFilters").due == due ? 'active' : '');
+	},
+	activeChoreFilter: function () {
+		var filters = Session.get("choreFilters");
+		var clearArray = [];
+		for (filter in filters) {
+			var val = filters[filter];
+			var id = filter;
+			var glyph = filterGlyph[filter];
+			if (filter == 'due') val = dueTranslation[filters[filter]];
+			clearArray.push({filterId: id, glyphicon: glyph, value: val})
+		}
+		return clearArray;
 	}
 });
 
@@ -66,6 +91,10 @@ Template.choreFilters.events = {
 		else {
 			addFilter('due', e.target.id);
 		}
+	},
+	'click .clear-filter': function (e) {
+		var filter = e.target.id;
+		removeFilter(filter);
 	}
 };
 

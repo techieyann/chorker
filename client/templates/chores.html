@@ -69,7 +69,10 @@
 				</a>
 				{{#if filters}}
 				<div class="float-right">
-					<button class="btn accordian-button" id="clear-filters">Clear &times;</button>
+					{{#each activeChoreFilter}}
+					<button class="btn accordian-button clear-filter" id="{{filterId}}"><span id="{{filterId}}" class="clear-filter glyphicon glyphicon-{{glyphicon}}"></span> {{value}} &times;</button>
+					{{/each}}
+					<button class="btn accordian-button" id="clear-filters">Clear All &times;</button>
 				</div>
 				{{/if}}
 			</h4>
