@@ -1,7 +1,7 @@
 <template name="housemates">
 	<h3>Housemates:</h3>
 	{{#each housemate}}
-	<p><a href="/profile{{#unless self}}/{{id}}{{/unless}}">{{name}}</a></p>
+	<p><a href="{{pathFor route='profile'}}{{#unless self}}/{{id}}{{/unless}}">{{name}}</a></p>
 	{{/each}}
 </template>
 
@@ -24,7 +24,7 @@
 </template>
 
 <template name="choreListing">
-		<li><a href="/chores/{{_id}}">{{name}}</a> ({{room}})</li>
+		<li><a href="{{pathFor route='chores'}}/{{_id}}">{{name}}</a> (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens room}}">{{room}}</a>)</li>
 </template>
 
 
