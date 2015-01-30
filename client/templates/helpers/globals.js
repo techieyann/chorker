@@ -13,6 +13,10 @@ Template.registerHelper('houseOwner', function () {
 	}
 });
 
+Template.registerHelper('humanReadableDate', function (datetime) {
+	return moment(datetime).format('MMMM Do YYYY, h:mm a');
+});
+
 parseFormData = function (formData) {
 	var parsedData = {};
 	for(var i in formData) {
