@@ -10,7 +10,9 @@
 					{{#each activeChoreFilter}}
 					<button class="btn accordian-button clear-filter" id="{{filterId}}"><span id="{{filterId}}" class="clear-filter glyphicon glyphicon-{{glyphicon}}"></span> {{value}} &times;</button>
 					{{/each}}
+					{{#if moreThanOneChoreFilter}}
 					<button class="btn accordian-button" id="clear-filters">Clear All &times;</button>
+					{{/if}}
 				</div>
 				{{/if}}
 			</h4>

@@ -43,9 +43,12 @@ Template.choreFilters.helpers({
 			var id = filter;
 			var glyph = filterGlyph[filter];
 			if (filter == 'due') val = dueTranslation[filters[filter]];
-			clearArray.push({filterId: id, glyphicon: glyph, value: val})
+			clearArray.push({filterId: id, glyphicon: glyph, value: val});
 		}
 		return clearArray;
+	},
+	moreThanOneChoreFilter: function () {
+		return (Object.keys(Session.get("choreFilters")).length>1 ? true : false);
 	}
 });
 
