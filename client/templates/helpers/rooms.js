@@ -23,3 +23,13 @@ Template.rooms.events = {
 		}
 	}
 };
+
+
+Template.listRooms.helpers({
+	rooms: function () {
+		var house = Session.get("house");
+		if (house) {
+			return house.rooms;
+		}
+	}
+});

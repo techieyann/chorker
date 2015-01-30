@@ -46,6 +46,13 @@ Router.map(function () {
 			return Houses.findOne();
 		}
 	});
+	this.route('room', {
+		path: '/house/room/:room',
+		controller: 'RegisteredController',
+		data: function () {
+			return this.params.room.replace('-',' ');
+		}
+	});
 	this.route('chores', {
 		path:'/chores',
 		controller: 'RegisteredController',

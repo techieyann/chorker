@@ -10,7 +10,7 @@
 				{{/if}}
 				<button class="btn {{buttonClass}} complete-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon {{buttonIcon}}"></span></button>
 			</div>
-			<p>{{name}} ({{room}})</p> 
+			<p>{{name}} (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens room}}">{{room}}</a>)</p> 
 			<p>{{desc}}</p>
 		</div>
 
