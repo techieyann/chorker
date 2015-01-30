@@ -53,7 +53,7 @@ Template.profileReporting.rendered = function () {
 
 		// Get the context of the canvas element we want to select
 		var ctx = document.getElementById("room-bar-chart").getContext("2d");
-		console.log(chartData);
+
 		new Chart(ctx).Bar(chartData, null);
 	}
 
