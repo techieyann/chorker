@@ -1,6 +1,7 @@
 <template name="room">
 	<div class="row">
 		<div class="col-sm-6">			
+			<h2>{{room}}:</h2>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">	
 				{{> roomByHousemate}}
 				{{#each chores}}
@@ -17,7 +18,7 @@
     <div class="panel-heading" role="tab" id="heading-{{_id}}">
       <h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{_id}}" aria-expanded="false" aria-controls="collapse-{{_id}}">
-					{{name}} ({{room}})
+					{{name}}
 				</a>
 				<div class="btn-group float-right">
 					<button class="btn btn-default goto-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-share-alt"></span></button>
