@@ -16,6 +16,14 @@ Template.chore.helpers({
 	},
 	choreOwner: function () {
 		return checkChoreOwner(this);
+	},
+	isSelf: function () {
+		if (this && Meteor.user()) {
+			if (this.user == Meteor.user()._id) {
+				return true;
+			}
+		}
+		return false;
 	}
 });
 

@@ -29,7 +29,7 @@
 				<div class="panel-body">
 					<ul>
 						{{#each completed}}
-						<li>Completed {{chore.name}} ({{chore.room}}) on {{completed_on}}</li>
+						<li>Completed <a href="{{pathFor route='chores'}}/{{chore._id}}">{{chore.name}} ({{chore.room}})</a> on {{completed_on}}</li>
 						{{/each}}
 					</ul>
 				</div>

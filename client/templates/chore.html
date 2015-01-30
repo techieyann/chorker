@@ -29,7 +29,7 @@
 		<div class="col-sm-8">
 			<ul>
 				{{#each completed}}
-				<li>Completed by {{username}} on {{completed_on}}</li>
+				<li>Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{completed_on}}</li>
 				{{/each}}
 			</ul>
 		</div>
