@@ -1,0 +1,57 @@
+<template name="choreFilters">
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="heading-filters">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse-filters" aria-expanded="true" aria-controls="collapse-filters">
+					Filters
+				</a>
+				{{#if filters}}
+				<div class="float-right">
+					{{#each activeChoreFilter}}
+					<button class="btn accordian-button clear-filter" id="{{filterId}}"><span id="{{filterId}}" class="clear-filter glyphicon glyphicon-{{glyphicon}}"></span> {{value}} &times;</button>
+					{{/each}}
+					<button class="btn accordian-button" id="clear-filters">Clear All &times;</button>
+				</div>
+				{{/if}}
+			</h4>
+		</div>
+		<div id="collapse-filters" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-filters">
+			<div class="panel-body">
+				<div class="row text-center">
+					<form id="chore-filter-search-form" role="form" class="form-inline">
+						<div class="input-group">
+							{{#if searchFilter}}
+							<span class="input-group-btn">
+								<button class="btn btn-default" id="clear-search"><span>&times;</span></button>
+							</span>
+							{{/if}}
+							<input id="search" class="form-control" name="query" type="text" value="{{searchQuery}}">
+							<span class="input-group-btn">
+								<button class="btn btn-default" value="submit"><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div>
+					</form>
+				</div>
+				<br>
+				<div class="row text-center">
+					<div class="btn-group">
+						{{#each rooms}}
+						<button class="btn btn-default room-filter {{activeRoom name}}" id="{{spacesToHyphens name}}">{{name}}</button>
+						{{/each}}
+						<button class="btn btn-default room-filter {{activeRoom 'other'}}" id="other">other</button>
+					</div>
+				</div>
+				<br>
+				<div class="row text-center">
+					<div class="btn-group">
+						<button class="btn btn-success due-filter {{activeDue 'success'}}" id="success">Done</button>
+						<button class="btn btn-primary due-filter {{activeDue 'primary'}}" id="primary">Due</button>
+						<button class="btn btn-warning due-filter {{activeDue 'warning'}}" id="warning">Overdue</button>
+						<button class="btn btn-danger due-filter {{activeDue 'danger'}}" id="danger">Late</button>
+						<button class="btn due-filter {{activeDue 'never'}}" id="never">Never</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
