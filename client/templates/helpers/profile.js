@@ -27,6 +27,7 @@ Template.profileReporting.rendered = function () {
 	if (house && Meteor.user()) {
 		var userId = Meteor.user()._id;
 		var rooms = house.rooms;
+		rooms.push({name: 'other'});
 		var labels = [];
 		var data = [];
 		rooms.forEach(function (val) {
