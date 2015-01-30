@@ -41,6 +41,8 @@ Template.chore.events = {
 	}
 };
 
+var choreTimeout = 2000;
+
 queueChore = function (chore, button) {
 	if (button.hasClass('pending')) {
 		var timeouts = Session.get("choreTimers");
@@ -61,7 +63,7 @@ queueChore = function (chore, button) {
 			delete timeouts[chore._id];
 			Session.set("choreTimers", timeouts);
 			button.removeClass('pending');
-		}, 10000);
+		}, choreTimeout);
 		var timeouts = Session.get("choreTimers");
 		timeouts[chore._id] = timeoutId;
 		Session.set("choreTimers", timeouts);		
