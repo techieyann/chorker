@@ -2,6 +2,7 @@
 	<div class="row">
 		<div class="col-sm-6">			
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">	
+				{{> roomByHousemate}}
 				{{#each chores}}
 				{{> roomChoreTab}}
 				{{/each}}
@@ -34,4 +35,21 @@
       </div>
     </div>
   </div>	
+</template>
+
+<template name="roomByHousemate">
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="heading-room-doughnut">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse-room-bar" aria-expanded="false" aria-controls="collapse-room-bar">
+					Housemate Ratios
+				</a>
+			</h4>
+		</div>
+		<div id="collapse-room-bar" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-room-bar">
+			<div class="panel-body">
+				<canvas id="room-doughnut-chart" width="300px" height="200px"></canvas>
+			</div>
+		</div>
+	</div>	
 </template>
