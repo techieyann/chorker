@@ -8,8 +8,8 @@
         <span class="icon-bar"></span>
       </button>
 			<a class="navbar-brand" href="{{pathFor route='welcome'}}">Chorker</a>
-
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
 
       <ul class="nav navbar-nav navbar-right">
@@ -17,6 +17,7 @@
 				<li class="text-right {{activeNav '/house'}}"><a href="{{pathFor route='house'}}">House</a></li>
 				<li class="text-right {{activeNav '/chore'}}"><a href="{{pathFor route='chores'}}">Chores</a></li>
 				<li class="text-right {{activeNav '/profile'}}"><a href="{{pathFor route='profile'}}">Profile</a></li>
+			<li class="text-right"><a href="" class="time-filter"><span class="glyphicon glyphicon-time time-filter"></span> Filter</a></li>
 				{{/if}}
 				<li class="text-right login-li">{{>loginButtons}}</li>
       </ul>

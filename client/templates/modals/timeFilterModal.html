@@ -1,0 +1,26 @@
+<template name="timeFilterModalHeader">
+	<h4 class="modal-title text-center">Edit your time filter:</h4>
+</template>
+
+<template name="timeFilterModalBody">
+	<div class="row text-center">
+		<div class="btn-group">
+			<button id="day" class="time-filter btn btn-{{activeFilter 'day'}}">Last Day</button>
+			<button id="week" class="time-filter btn btn-{{activeFilter 'week'}}">Last Week</button>
+			<button id="month" class="time-filter btn btn-{{activeFilter 'month'}}">Last Month</button>
+			<button id="year" class="time-filter btn btn-{{activeFilter 'year'}}">Last Year</button>
+			<button id="all" class="time-filter btn btn-{{activeFilter 'all'}}">All Time</button>
+			<button id="custom" class="time-filter btn btn-{{activeFilter 'custom'}}">Custom</button>
+		</div>
+	</div>
+
+	<br>
+	<div class="row text-center 	{{#unless customActive}}hidden{{/unless}}">
+		From: <input class="date" id="start" value="{{startTime}}"> To:<input class="date" id="end" value="{{endTime}}">
+	</div>
+
+</template>
+
+<template name="timeFilterModalFooter">
+	<button id="close" class="btn">Close</button>
+</template>

@@ -1,10 +1,14 @@
-
-
 Meteor.publish('chores', function (house) {
 	return Chores.find({house_id: house});
 });
 
-Meteor.publish('completed', function (house) {
+Meteor.publish('completed', function (house, start, end) {
+	if (start) {
+		if (end) {
+		return Completed.find({$and: [{house: house},{completed_on: {$gte: start}}, {completed_on: {$lte: end}}]});
+		}
+		return Completed.find({$and: [{house: house},{completed_on: {$gte: start}}]});
+	}
 	return Completed.find({house: house});
 });
 

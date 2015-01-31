@@ -14,3 +14,4 @@ iron:router
 mrt:accounts-ui-bootstrap-3
 mrt:chartjs
 
+mizzao:jquery-ui

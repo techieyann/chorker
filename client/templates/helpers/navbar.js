@@ -11,3 +11,10 @@ Template.myNavbar.helpers({
 		}
 	}
 });
+
+Template.myNavbar.events = {
+	'click .time-filter': function (e) {
+		e.preventDefault();
+		openModal('timeFilterModalHeader', 'timeFilterModalBody', 'timeFilterModalFooter');
+	}
+};
