@@ -30,12 +30,18 @@
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="heading-{{_id}}">
       <h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{_id}}" aria-expanded="false" aria-controls="collapse-{{_id}}">
-					{{name}} ({{room}})
-				</a>
-				<div class="btn-group float-right">
-					<button class="btn btn-default goto-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-share-alt"></span></button>
-					<button class="btn {{buttonClass}} complete-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon {{buttonIcon}}"></span></button>
+				<div class="row">
+					<div class="col-xs-9">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{_id}}" aria-expanded="false" aria-controls="collapse-{{_id}}">
+							{{name}} ({{room}})
+						</a>
+					</div>
+					<div class="col-xs-3">
+						<div class="btn-group pull-right">
+							<button class="btn btn-default goto-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-share-alt"></span></button>
+							<button class="btn {{buttonClass}} complete-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon {{buttonIcon}}"></span></button>
+						</div>
+					</div>
 				</div>
       </h4>
 		</div>

@@ -2,19 +2,22 @@
 	<div class="panel panel-default">
 		<div class="panel-heading" role="tab" id="heading-filters">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapse-filters" aria-expanded="true" aria-controls="collapse-filters">
-					Filters
-				</a>
-				{{#if filters}}
-				<div class="float-right">
-					{{#each activeChoreFilter}}
-					<button class="btn accordian-button clear-filter" id="{{filterId}}"><span id="{{filterId}}" class="clear-filter glyphicon glyphicon-{{glyphicon}}"></span> {{value}} &times;</button>
-					{{/each}}
-					{{#if moreThanOneChoreFilter}}
-					<button class="btn accordian-button" id="clear-filters">Clear All &times;</button>
-					{{/if}}
+				<div class="row">
+					<div class="col-xs-3">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapse-filters" aria-expanded="true" aria-controls="collapse-filters">
+							Filters
+						</a>
+					</div>
+					<div class="col-xs-9">
+						{{#if filters}}
+
+							{{#each activeChoreFilter}}
+							<button class="btn accordian-button clear-filter pull-right" id="{{filterId}}"><span id="{{filterId}}" class="clear-filter glyphicon glyphicon-{{glyphicon}}"></span> {{value}} &times;</button>
+							{{/each}}
+
+						{{/if}}
+					</div>
 				</div>
-				{{/if}}
 			</h4>
 		</div>
 		<div id="collapse-filters" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-filters">
@@ -52,6 +55,12 @@
 						<button class="btn btn-danger due-filter {{activeDue 'danger'}}" id="danger">Late</button>
 						<button class="btn due-filter {{activeDue 'never'}}" id="never">Never</button>
 					</div>
+				</div>
+				<br>
+				<div class="row text-center">
+					{{#if moreThanOneChoreFilter}}
+					<button class="btn accordian-button" id="clear-filters">Clear All &times;</button>
+					{{/if}}
 				</div>
 			</div>
 		</div>
