@@ -1,9 +1,18 @@
 <template name="house">
-	<h2>{{houseName}} <a href="{{pathFor 'chores'}}">Chores</a></h2>
-	{{#if isOwner}}<a href="{{pathFor 'house'}}/{{houseId}}">Manage house</a>{{/if}}
 	<div class="row">
 		<div class="col-sm-4">
+			<h2>{{houseName}} <a href="{{pathFor 'chores'}}">Chores</a></h2>
+			{{#if isOwner}}<a href="{{pathFor 'house'}}/{{houseId}}">Manage house</a>{{/if}}
+		</div>
+		<div class="col-sm-4">
 			{{> housemates}}
+		</div>
+		<div class="col-sm-4">
+			{{> houseByHousemate}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
 			{{> listRooms}}
 		</div>
 		<div class="col-sm-4">
@@ -14,4 +23,9 @@
 		</div>
 	</div>
 
+</template>
+
+
+<template name="houseByHousemate">
+	<canvas id="house-doughnut-chart" width="300px" height="200px"></canvas>
 </template>
