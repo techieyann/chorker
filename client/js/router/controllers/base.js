@@ -16,16 +16,16 @@ RegisteredController = BaseController.extend({
 				var end = null;
 				switch(timeFilter.filter) {
 					case 'day':
-					start = moment().day(-1).format();
+					start = moment().subtract(1, 'days').format();
 					break;
 					case 'week':
-					start = moment().week(-1).format();
+					start = moment().subtract(1, 'weeks').format();
 					break;
 					case 'month':
-					start = moment().month(-1).format();
+					start = moment().subtract(1, 'months').format();
 					break;
 					case 'year':
-					start = moment().month(-12).format();
+					start = moment().subtract(1, 'years').format();
 					break;
 					case 'custom':
 					start = moment(timeFilter.range.from, 'MM/DD/YYYY').format();
