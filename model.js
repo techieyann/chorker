@@ -43,20 +43,23 @@ Meteor.methods({
 		var house = Houses.findOne({_id: options.id});
 
 		if (house) {
-			if (house.pass == options.password) {
-				Meteor.users.update({_id: Meteor.user()._id}, {$set:{
-					"profile.initialized":true,
-					"profile.house":options.id
-				}});
-				var mates = house.members;
-				var username = Meteor.user().profile.username;
-				if (!username) username = Meteor.user().emails[0].address;
-				mates[Meteor.user()._id] = username;
-				return Houses.update({_id: house._id},{$set: {members: mates}});
+			if (Meteor.isServer) {
+				if (house.pass == options.password) {
+					Meteor.users.update({_id: Meteor.user()._id}, {$set:{
+						"profile.initialized":true,
+						"profile.house":options.id
+					}});
+					var mates = house.members;
+					var username = Meteor.user().profile.username;
+					if (!username) username = Meteor.user().emails[0].address;
+					mates[Meteor.user()._id] = username;
+					return Houses.update({_id: house._id},{$set: {members: mates}});
+				}
+				else { throw new Meteor.Error('Incorrect house Password');}
 			}
-			else { throw new Meteor.Error('Incorrect house Password');}
 		}
 		throw new Meteor.Error('Could not find specified house');																
+
 	},
 	createHouse: function (options) {
 		return Houses.insert(options);

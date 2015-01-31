@@ -9,11 +9,11 @@ Meteor.publish('completed', function (house) {
 });
 
 Meteor.publish('houses', function() {
-	return Houses.find(); 
+	return Houses.find({}, {fields: {'pass': 0}}); 
 });
 
 Meteor.publish('myHouse', function (house) {
-	return Houses.find({_id: house});
+	return Houses.find({_id: house}, {fields: {'pass': 0}});
 });
 
 Accounts.onCreateUser(function (options, user) {
