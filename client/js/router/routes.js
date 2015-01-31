@@ -21,7 +21,10 @@ Router.map(function () {
 		controller: 'RegisteredController',
 		data: function () {
 			if (Meteor.user()) {
-				return Completed.find({user: Meteor.user()._id});
+				return {
+					id: Meteor.user()._id,
+					completed: Completed.find({user: Meteor.user()._id})
+				};
 			}
 		}
 	});
@@ -29,7 +32,10 @@ Router.map(function () {
 		path: '/profile/:_id',
 		controller: 'RegisteredController',
 		data: function () {
-			return Completed.find({user: this.params._id});
+			return {
+				id: this.params._id,
+				completed: Completed.find({user: this.params._id})
+			};
 		}
 	});
 	this.route('house', {

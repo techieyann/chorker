@@ -11,7 +11,7 @@ Template.profile.helpers({
 
 Template.profileReporting.helpers({
 	completed: function () {
-		if (this) return this;
+		if (this) return this.completed;
 	},
 	chore: function () {
 		if (this) {
@@ -24,8 +24,8 @@ Template.profileReporting.helpers({
 Template.profileReporting.rendered = function () {
 
 	var house = Session.get("house");
-	if (house && Meteor.user()) {
-		var userId = Meteor.user()._id;
+	if (house && this) {
+		var userId = this.data.id;
 		var rooms = house.rooms;
 		rooms.push({name: 'other'});
 		var labels = [];
