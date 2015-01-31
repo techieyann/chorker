@@ -2,7 +2,7 @@
 	{{#with chore}}
 	<div class="row">
 
-		<div class="col-sm-6 col-sm-offset-3 well">
+		<div class="col-sm-6 well">
 			<div class="btn-group float-right">
 				<button type="button" class="btn btn-default edit-chore" id="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button>
 				{{#if choreOwner}}
@@ -13,9 +13,10 @@
 			<p>{{name}} (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens room}}">{{room}}</a>)</p> 
 			<p>{{desc}}</p>
 		</div>
-
+		<div class="col-sm-6">
+			{{> choreByHousemate}}
+		</div>
 	</div>
-
 	<div class="row">
 {{#if period}}
 		<div class="col-sm-4">
@@ -36,3 +37,8 @@
 </div>
 {{/with}}
 </template>
+
+<template name="choreByHousemate">
+	<canvas id="chore-doughnut-chart" width="300px" height="200px"></canvas>
+</template>
+

@@ -17,6 +17,21 @@ Template.registerHelper('humanReadableDate', function (datetime) {
 	return moment(datetime).format('MMMM Do YYYY, h:mm a');
 });
 
+colors = [
+	{
+		color: "#F7464A",
+		highlight: "#FF5A5E",
+	},
+	{
+		color: "#46BFBD",
+    highlight: "#5AD3D1",
+	},
+	{
+    color: "#FDB45C",
+    highlight: "#FFC870"
+	}
+];
+
 parseFormData = function (formData) {
 	var parsedData = {};
 	for(var i in formData) {

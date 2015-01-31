@@ -1,3 +1,33 @@
+Template.choreByHousemate.rendered = function () {
+	var house = Session.get("house");
+	if (this && house) {
+
+		var housemateIds = Object.keys(house.members);
+		var choreId = this.data._id
+		var chartData = [];
+		var colorsIndex = 0;
+		housemateIds.forEach(function (val) {
+			var total = Completed.find({$and: [{chore: choreId}, {user: val}]}).count();			
+
+			if (total) {
+				chartData.push({
+					value: total,
+					color: colors[colorsIndex].color,
+					highlight: colors[colorsIndex].highlight,
+					label: house.members[val]
+				});
+				colorsIndex++;
+				if(colorsIndex > colors.length) colorsIndex = 0;
+			}
+		});
+
+		// Get the context of the canvas element we want to select
+		var ctx = document.getElementById("chore-doughnut-chart").getContext("2d");
+
+		new Chart(ctx).Doughnut(chartData,null);
+	}
+};
+
 Template.chore.helpers({
 	chore: function () {
 		if (this) return this;
