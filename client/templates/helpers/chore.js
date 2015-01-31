@@ -3,7 +3,7 @@ Template.choreByHousemate.rendered = function () {
 	if (this && house) {
 
 		var housemateIds = Object.keys(house.members);
-		var choreId = this.data._id
+		var choreId = this.data._id;
 		var chartData = [];
 		var colorsIndex = 0;
 		housemateIds.forEach(function (val) {
