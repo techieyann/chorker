@@ -44,9 +44,16 @@ Router.map(function () {
 		controller: 'RegisteredController',
 		data: function () {
 			var userId = this.params._id;
+				var completedChores = timelyCompleted([{user: userId}]);
+				var completedArray = [];
+				completedChores.forEach( function (val) {
+					var choreId = val.chore;
+					val.chore = Chores.findOne(choreId);
+					completedArray.push(val);
+				});
 			return {
 				id: userId,
-				completed: timelyCompleted([{user: userId}]),
+				completed: completedArray,
 				chart: calcProfileBarChart(userId)
 			};
 		}
