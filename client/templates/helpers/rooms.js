@@ -1,35 +1,17 @@
 Template.rooms.events = {
 	'click .delete-room': function (e) {
-		var house = Session.get("house");
-		if (house) {
-			var options = {
-				id: house._id,
-				name: e.target.id
-			};
-			var affectedChores = Chores.find({$and : [{house_id: house._id},{room: options.name}]});
-			affectedChores = affectedChores.count()
-			if (affectedChores >0) {
-				options.numChores = affectedChores;
-				openModal('deleteRoomModalHeader','deleteRoomModalBody','deleteRoomModalFooter', options);
-			}
-			else {
-				Meteor.call('deleteRoom', options, function (err) {
-					if (err) {
-						alert("danger", "Delete Room Error: " + err.message);
-						return;
-					}
-				});
-			}
+		var room = e.target.id;
+		var options = Template.parentData(1).affectedChores[room];
+		if (options.numChores) {
+			openModal('deleteRoomModalHeader','deleteRoomModalBody','deleteRoomModalFooter', options);
+		}
+		else {
+			Meteor.call('deleteRoom', options, function (err) {
+				if (err) {
+					alert("danger", "Delete Room Error: " + err.message);
+					return;
+				}
+			});			
 		}
 	}
 };
-
-
-Template.listRooms.helpers({
-	rooms: function () {
-		var house = Session.get("house");
-		if (house) {
-			return house.rooms;
-		}
-	}
-});

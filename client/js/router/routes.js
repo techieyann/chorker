@@ -69,7 +69,30 @@ Router.map(function () {
 		path: '/house/:_id',
 		controller: 'RegisteredController',
 		data: function () {
-			return Houses.findOne();
+			var house = Session.get("house");
+			if (house) {
+				var affectedChoresByRoom = {};
+				house.rooms.forEach(function (val) {
+					var roomName = val.name
+					affectedChoresByRoom[roomName] = {
+						id: house._id,
+						name: val
+					}
+					var affectedChores = Chores.find({$and : [{house_id: house._id},{room: roomName}]}).count();
+					if (affectedChores >0) {
+						affectedChoresByRoom[roomName].numChores = affectedChores;
+					}
+				});
+				resetChoreModalOptions = {
+					id: house._id,
+					numCompleted: Completed.find().count()
+				};
+				return {
+					rooms: house.rooms,
+					affectedChores: affectedChoresByRoom,
+					resetChores: resetChoreModalOptions
+				};
+			}
 		}
 	});
 	this.route('room', {
