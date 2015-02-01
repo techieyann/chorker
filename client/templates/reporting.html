@@ -1,14 +1,24 @@
 <template name="housemates">
 	<h3>Housemates:</h3>
-	{{#each housemate}}
+	{{#each housemates}}
 	<p><a href="{{pathFor route='profile'}}{{#unless self}}/{{id}}{{/unless}}">{{name}}</a></p>
 	{{/each}}
+</template>
+
+<template name="listRooms">
+	<h3>Rooms:</h3>
+	<ul>
+		<li><a href="{{pathFor route='house'}}/room/other">other</a></li>
+		{{#each rooms}}
+		<li><a href="{{pathFor route='house'}}/room/{{spacesToHyphens name}}">{{name}}</a></li>
+		{{/each}}
+	</ul>
 </template>
 
 <template name="recentChores">
 	<h3>Recently Complete</h3>
 	<ol>
-		{{#each chores}}
+		{{#each recentChores}}
 		{{> choreListing}}
 		{{/each}}
 	</ol>
@@ -17,7 +27,7 @@
 <template name="leastRecentChores">
 	<h3>Least Recently Complete</h3>
 	<ol>
-		{{#each chores}}
+		{{#each leastRecentChores}}
 		{{> choreListing}}
 		{{/each}}
 	</ol>

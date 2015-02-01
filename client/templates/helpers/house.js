@@ -1,22 +1,16 @@
-Template.house.helpers({
-	houseName: function () {
-		if (Session.get("house")) return Session.get("house").name;
+Template.houseDoughnutChart.helpers({
+	chartHidden: function () {
+		if (this.chart.length) return false;
+		return true;
 	},
-	houseId: function () {
-		if (Session.get("house")) return Session.get("house")._id;
-	},
-	isOwner: function () {
-		if (Session.get("house")) {
-			return (Session.get("house").owner == Meteor.user()._id);
-		}
-		return false;
+	initChartAutorun: function () {
+		var that = this;
+		Deps.autorun(function () {
+			renderHouseDoughnutChart(that.chart);
+		});		
 	}
 });
+Template.houseDoughnutChart.rendered = function () {
+	renderHouseDoughnutChart(this.data.chart);
 
-
-Template.houseByHousemate.rendered = function () {
-
-	Deps.autorun(function () {
-		calcAndRenderHouseDoughnut();
-	});
 };

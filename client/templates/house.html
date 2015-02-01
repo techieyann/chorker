@@ -8,7 +8,7 @@
 			{{> housemates}}
 		</div>
 		<div class="col-sm-4">
-			{{> houseByHousemate}}
+			{{> houseDoughnutChart}}
 		</div>
 	</div>
 	<div class="row">
@@ -26,6 +26,7 @@
 </template>
 
 
-<template name="houseByHousemate">
-	<canvas id="house-doughnut-chart" width="300px" height="200px"></canvas>
+<template name="houseDoughnutChart">
+	{{initChartAutorun}}
+	<canvas class="{{#if chartHidden}}hidden{{/if}}" id="house-doughnut-chart" width="300px" height="200px"></canvas>
 </template>

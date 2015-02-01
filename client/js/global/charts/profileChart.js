@@ -1,7 +1,6 @@
 renderProfileBarChart = function (chartData) {
 	var roomBarChart = document.getElementById("room-bar-chart");
 	if (roomBarChart && chartData.data) {
-
 		var chartObj = {
 			labels: chartData.labels,
 			datasets: [{
@@ -12,10 +11,7 @@ renderProfileBarChart = function (chartData) {
 				data: chartData.data
 			}]
 		};
-		// Get the context of the canvas element we want to select
-
 		new Chart(roomBarChart.getContext("2d")).Bar(chartObj, null);
-
 	}
 };
 

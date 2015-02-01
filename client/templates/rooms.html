@@ -7,13 +7,3 @@
 		{{/each}}
 	</ul>
 </template>
-
-<template name="listRooms">
-	<h3>Rooms:</h3>
-	<ul>
-		<li><a href="{{pathFor route='house'}}/room/other">other</a></li>
-		{{#each rooms}}
-		<li><a href="{{pathFor route='house'}}/room/{{spacesToHyphens name}}">{{name}}</a></li>
-		{{/each}}
-	</ul>
-</template>
