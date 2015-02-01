@@ -1,36 +1,28 @@
-Template.choreByHousemate.rendered = function () {
-	var that = this;
-	Deps.autorun(function () {
-		calcAndRenderChoreDoughnut(that.data);
-	});
-};
+
 
 Template.chore.helpers({
-	chore: function () {
-		if (this) return this;
-		else Router.go('/chores');
-	},
-	completed: function () {
-		if (this) {
-			return Completed.find({chore: this._id}, {sort: {completed_on:-1}});
-		}
-	},
 	buttonClass: function () {
-		return choreCompleteButtonClass(this);
+		return choreCompleteButtonClass(this.chore);
 	},
 	buttonIcon: function () {
-		return choreCompleteButtonIcon(this);
+		return choreCompleteButtonIcon(this.chore);
 	},
 	choreOwner: function () {
-		return checkChoreOwner(this);
+		return checkChoreOwner(this.chore);
 	},
 	isSelf: function () {
 		if (this && Meteor.user()) {
-			if (this.user == Meteor.user()._id) {
+			if (this.chore.user == Meteor.user()._id) {
 				return true;
 			}
 		}
 		return false;
+	},
+	noneCompleted: function () {
+		if (this) {
+			if (this.completed.count()) return false;
+		}
+		return true;
 	}
 });
 
@@ -38,14 +30,31 @@ Template.chore.helpers({
 Template.chore.events = {
 	'click .complete-chore': function(e) {
 		var button = $('#'+e.target.id+'.complete-chore');
-		if (this) queueChore(this, button);
+		if (this.chore) queueChore(this.chore, button);
 	},
 	'click .edit-chore': function (e) {
-		if (this) editChoreModal(this);
+		if (this.chore) editChoreModal(this.chore);
 	},
 	'click .delete-chore': function (e) {
-		if (this) deleteChoreModal(this);
+		if (this.chore) deleteChoreModal(this.chore);
 	}
 };
 
+Template.choreByHousemate.helpers({
+	chartHidden: function () {
+		if (this) {
+			if (this.chart.length) return false;
+		}
+		return true;
+	},
+	initChartAutorun: function () {
+		var that = this;
+		Deps.autorun(function () {
+			renderChoreDoughnutChart(that.chart);
+		});
+	}
+});
 
+Template.choreByHousemate.rendered = function () {
+	renderChoreDoughnutChart(this.data.chart);
+};

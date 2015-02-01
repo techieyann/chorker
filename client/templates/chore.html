@@ -1,5 +1,5 @@
 <template name="chore">
-	{{#with chore}}
+
 	<div class="row">
 
 		<div class="col-sm-6 well">
@@ -10,14 +10,17 @@
 				{{/if}}
 				<button class="btn {{buttonClass}} complete-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon {{buttonIcon}}"></span></button>
 			</div>
+			{{#with chore}}
 			<p>{{name}} (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens room}}">{{room}}</a>)</p> 
 			<p>{{desc}}</p>
+			{{/with}}
 		</div>
 		<div class="col-sm-6">
 			{{> choreByHousemate}}
 		</div>
 	</div>
 	<div class="row">
+			{{#with chore}}
 {{#if period}}
 		<div class="col-sm-4">
 			<p>Completed every {{period}} seconds</p>
@@ -26,19 +29,23 @@
 			<p>Completed every {{secondsToDays period}} days</p>
 		</div>
 {{/if}}
-		
+			{{/with}}		
 		<div class="col-sm-8">
 			<ul>
 				{{#each completed}}
 				<li>Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{humanReadableDate completed_on}}</li>
 				{{/each}}
+				{{#if noneCompleted}}
+				There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 
+				{{/if}}
 			</ul>
 		</div>
 </div>
-{{/with}}
+
 </template>
 
 <template name="choreByHousemate">
-	<canvas id="chore-doughnut-chart" width="300px" height="200px"></canvas>
+	{{initChartAutorun}}
+	<canvas class="{{#if chartHidden}}hidden{{/if}}" id="chore-doughnut-chart" width="300px" height="200px"></canvas>
 </template>
 

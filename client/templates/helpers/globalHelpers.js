@@ -7,9 +7,7 @@ Template.registerHelper('houseOwner', function () {
 	var house = Session.get("house");
 	if (house) {
 		if (Meteor.user()) {
-			if (Meteor.user().profile.initialized) {
-				return Meteor.user()._id == house.owner;
-			}
+			return Meteor.user()._id == house.owner;
 		}
 	}
 });

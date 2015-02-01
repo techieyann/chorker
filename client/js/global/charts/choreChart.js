@@ -1,13 +1,22 @@
-calcAndRenderChoreDoughnut = function (data) {
+renderChoreDoughnutChart = function (chartData) {
+
+	// Get the context of the canvas element we want to select
+	var choreDoughnutChart = document.getElementById("chore-doughnut-chart");
+	if (choreDoughnutChart) {
+		new Chart(choreDoughnutChart.getContext("2d")).Doughnut(chartData,null);
+	}
+
+};
+
+calcChoreDoughnutChart = function (choreId) {
 	var house = Session.get("house");
-	if (data && house) {
+	if (choreId && house) {
 
 		var housemateIds = Object.keys(house.members);
-		var choreId = data._id;
 		var chartData = [];
 		var colorsIndex = 0;
 		housemateIds.forEach(function (val) {
-			var total = Completed.find({$and: [{chore: choreId}, {user: val}]}).count();			
+			var total = timelyCompleted([{chore: choreId}, {user: val}]).count();
 
 			if (total) {
 				chartData.push({
@@ -20,11 +29,6 @@ calcAndRenderChoreDoughnut = function (data) {
 				if(colorsIndex > colors.length) colorsIndex = 0;
 			}
 		});
-
-		// Get the context of the canvas element we want to select
-		var ctx = document.getElementById("chore-doughnut-chart");
-		if (ctx) {
-			new Chart(ctx.getContext("2d")).Doughnut(chartData,null);
-		}
+		return chartData;
 	}
 };
