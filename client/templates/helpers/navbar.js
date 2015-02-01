@@ -9,5 +9,11 @@ Template.myNavbar.helpers({
 			}
 			return '';
 		}
+	},
+	houseName: function () {
+		var house = Session.get("house");
+		if (house) {
+			return house.name;
+		}
 	}
 });

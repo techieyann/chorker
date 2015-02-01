@@ -48,10 +48,18 @@ Router.map(function () {
 					id: house._id,
 					numCompleted: Completed.find().count()
 				};
+				var housemateArray = [];
+				for (var key in house.members) {
+					housemateArray.push({
+						id: key,
+						name: house.members[key]
+					});
+				}
 				return {
 					rooms: house.rooms,
 					affectedChores: affectedChoresByRoom,
-					resetChores: resetChoreModalOptions
+					resetChores: resetChoreModalOptions,
+					housemates: housemateArray
 				};
 			}
 		}

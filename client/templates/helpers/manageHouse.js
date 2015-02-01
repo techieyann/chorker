@@ -4,3 +4,9 @@ Template.manageHouse.events = {
 		openModal('resetChoresModalHeader','resetChoresModalBody','resetChoresModalFooter', options);
 	}
 };
+
+Template.manageHousemates.events = {
+	'click .remove-housemate': function () {
+		openModal('removeHousemateModalHeader', 'removeHousemateModalBody', 'removeHousemateModalFooter', this);
+	}
+};

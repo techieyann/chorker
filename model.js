@@ -39,11 +39,11 @@ Meteor.methods({
 		Chores.update({house_id: id}, {$set: {last_completed: "", times_completed: 0, period: ""}}, {multi:true});
 	},
 	joinHouse: function (options) {
+		if (Meteor.isServer) {
+			var house = Houses.findOne({_id: options.id});
 
-		var house = Houses.findOne({_id: options.id});
+			if (house) {
 
-		if (house) {
-			if (Meteor.isServer) {
 				if (house.pass == options.password) {
 					Meteor.users.update({_id: Meteor.user()._id}, {$set:{
 						"profile.initialized":true,
@@ -57,9 +57,48 @@ Meteor.methods({
 				}
 				else { throw new Meteor.Error('Incorrect house Password');}
 			}
+			
+			throw new Meteor.Error('Could not find specified house');																
 		}
-		throw new Meteor.Error('Could not find specified house');																
+	},
+	removeHousemate: function (options) {
+		if (Meteor.user()) {
+			var userId = Meteor.user()._id;
+			if (Meteor.isClient) {
+				var house = Session.get("house");
+				if (userId != options.userId && userId != house.owner) {
+					throw new Meteor.Error('Not manager -- cannot remove other users from house');
+				}
+			}
+			if (Meteor.isServer) {
+				var house = Houses.findOne({_id: options.house});
+				if (house) {
+					if (userId == house.owner) {
+						if (options.userId == userId) throw new Meteor.Error('You are the manager of this house and cannot remove yourself from it');
+						Meteor.users.update({_id: options.userId}, {$set:{
+							"profile.initialized": false,
+							"profile.house": ''
+						}});
+						var mates = house.members;
+						delete mates[options.userId];
+						return Houses.update({_id: house._id},{$set: {members: mates}});
+					}
+					else if (userId == options.userId) {
+						Meteor.users.update({_id: options.userId}, {$set:{
+							"profile.initialized": false,
+							"profile.house": ''
+						}});
+						var mates = house.members;
+						delete mates[options.userId];
+						return Houses.update({_id: house._id},{$set: {members: mates}});
+					}
+					else throw new Meteor.Error('Cannot remove others from the house, contact house manager');
 
+				}
+				else throw new Meteor.Error('Could not find specified house');
+			}
+		}
+		else throw new Meteor.Error('Must be logged in to remove members from house');
 	},
 	createHouse: function (options) {
 		return Houses.insert(options);

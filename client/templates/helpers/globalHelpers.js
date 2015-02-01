@@ -1,3 +1,10 @@
+Template.registerHelper('self', function () {
+	if (this && Meteor.user()) {
+		if (this.id == Meteor.user()._id) return true;
+	}
+	return false;
+});
+
 Template.registerHelper('spacesToHyphens', function (inputStr) {
 	if (inputStr) return inputStr.replace(' ','-');
 	return '';
