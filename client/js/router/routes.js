@@ -2,9 +2,6 @@ Router.map(function () {
 	this.route('userInit', {
 		path: '/init',
 		controller: 'BaseController',
-		subscription: function () {
-			this.subscribe('houses');
-		},
 		waitOn: function () {
 			return Meteor.subscribe('houses');
 		},
