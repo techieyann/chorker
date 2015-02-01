@@ -28,6 +28,9 @@
 						{{#each completed}}
 						<li>Completed <a href="{{pathFor route='chores'}}/{{chore._id}}">{{chore.name}}</a> (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens chore.room}}">{{chore.room}}</a>) on {{humanReadableDate completed_on}}</li>
 						{{/each}}
+						{{#if noneCompleted}}
+						There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 
+						{{/if}}
 					</ul>
 				</div>
 			</div>
@@ -48,7 +51,9 @@
 		</div>
 		<div id="collapse-room-bar" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-room-bar">
 			<div class="panel-body">
-				<canvas id="room-bar-chart" width="300px" height="200px"></canvas>
+				{{initChartAutorun}}
+				<canvas class="{{#if chartHidden}}hidden{{/if}}" id="room-bar-chart" width="300px" height="200px"></canvas>
+				{{#if chartHidden}}There are no chores to chart in this <a href="" class="time-filter">time range</a>.{{/if}}
 			</div>
 		</div>
 	</div>	

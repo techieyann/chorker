@@ -1,38 +1,51 @@
-calcAndRenderProfileBar = function (data) {
+renderProfileBarChart = function (chartData) {
+	var roomBarChart = document.getElementById("room-bar-chart");
+	if (roomBarChart && chartData.data) {
 
+		var chartObj = {
+			labels: chartData.labels,
+			datasets: [{
+				fillColor: "rgba(151,187,205,0.5)",
+				strokeColor: "rgba(151,187,205,0.8)",
+				highlightFill: "rgba(151,187,205,0.75)",
+				highlightStroke: "rgba(151,187,205,1)",
+				data: chartData.data
+			}]
+		};
+		// Get the context of the canvas element we want to select
+
+		new Chart(roomBarChart.getContext("2d")).Bar(chartObj, null);
+
+	}
+};
+
+
+calcProfileBarChart = function (userId) {
 	var house = Session.get("house");
-	if (house && data) {
-		var userId = data.id;
+	if (house) {
 		var rooms = house.rooms;
 		rooms.push({name: 'other'});
-		var labels = [];
-		var data = [];
+		var chartLabels = [];
+		var chartData = [];
 		rooms.forEach(function (val) {
 			var chores = Chores.find({room: val.name});
 			var total = 0;
 			chores.forEach(function (val) {
-				total = total + Completed.find({$and : [{user: userId}, {chore: val._id}]}).count();
+				var choresCompleted = timelyCompleted([{user: userId}, {chore: val._id}]);
+				total = total + choresCompleted.count();
 			});
 			if (total) {
-				labels.push(val.name);
-				data.push(total);
+				chartLabels.push(val.name);
+				chartData.push(total);
 			}
 		});
-		var chartData = {
-			labels: labels,
-			datasets: [{
-        fillColor: "rgba(151,187,205,0.5)",
-        strokeColor: "rgba(151,187,205,0.8)",
-        highlightFill: "rgba(151,187,205,0.75)",
-        highlightStroke: "rgba(151,187,205,1)",
-				data: data
-			}]
-		};
-
-		// Get the context of the canvas element we want to select
-		var ctx = document.getElementById("room-bar-chart");
-		if (ctx) {
-			new Chart(ctx.getContext("2d")).Bar(chartData, null);
+		if (chartData.length) {
+			return {
+				labels: chartLabels,
+				data: chartData
+			}
 		}
 	}
+	return {};
+
 };

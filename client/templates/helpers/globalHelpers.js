@@ -1,5 +1,6 @@
 Template.registerHelper('spacesToHyphens', function (inputStr) {
-	return inputStr.replace(' ','-');
+	if (inputStr) return inputStr.replace(' ','-');
+	return '';
 });
 
 Template.registerHelper('houseOwner', function () {
@@ -32,3 +33,10 @@ Template.registerHelper('secondsToHours', function (seconds) {
 Template.registerHelper('secondsToDays', function (seconds) {
 	return round2Dec((seconds/3600)/24);
 });
+
+Template.index.events = {
+	'click .time-filter' : function (e) {
+		e.preventDefault();
+		openModal('timeFilterModalHeader', 'timeFilterModalBody', 'timeFilterModalFooter');
+	}
+};

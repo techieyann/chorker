@@ -1,31 +1,27 @@
-Template.profile.helpers({
-	initialized: function () {
-		if (Meteor.user()) {
-			if (Meteor.user().profile.initialized) {
-				return true;
-			}
-		}
-		return false;
-	}
-});
-
 Template.profileReporting.helpers({
-	completed: function () {
-		if (this) return this.completed;
-	},
-	chore: function () {
+	noneCompleted: function () {
 		if (this) {
-			return Chores.findOne(this.chore);
+			if (this.completed.length) return false;
+			return true;
 		}
 	}
 });
 
+Template.profileCharts.helpers({
+	chartHidden: function () {
+		if (this.chart.data) return false;
+		return true;
+	},
+	initChartAutorun: function () {
+		var that = this;
+		Deps.autorun(function () {
+			renderProfileBarChart(that.chart);
+		});
+	}
+});
 
 Template.profileReporting.rendered = function () {
-	var that = this;
-	Deps.autorun(function () {
-		calcAndRenderProfileBar(that.data);
-	});
+	renderProfileBarChart(this.data.chart);
 };
 
 
@@ -35,12 +31,5 @@ changeUsernameModal = function () {
 };
 
 Template.profile.events = {
-	'click #change-username': changeUsernameModal
+	'click #change-username': changeUsernameModal()
 };
-
-
-Template.userInit.helpers({
-	houses: function () {
-		if (this) return this;
-	}
-});

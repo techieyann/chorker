@@ -9,7 +9,9 @@ Router.map(function () {
 			return Meteor.subscribe('houses');
 		},
 		data: function () {
-			return Houses.find();
+			return {
+				houses: Houses.find()
+			};
 		}
 	});
 	this.route('welcome', {
@@ -21,9 +23,18 @@ Router.map(function () {
 		controller: 'RegisteredController',
 		data: function () {
 			if (Meteor.user()) {
+				var userId = Meteor.user()._id;
+				var completedChores = timelyCompleted([{user: userId}]);
+				var completedArray = [];
+				completedChores.forEach( function (val) {
+					var choreId = val.chore;
+					val.chore = Chores.findOne(choreId);
+					completedArray.push(val);
+				});
 				return {
-					id: Meteor.user()._id,
-					completed: Completed.find({user: Meteor.user()._id})
+					id: userId,
+					completed: completedArray,
+					chart: calcProfileBarChart(userId)
 				};
 			}
 		}
@@ -32,9 +43,11 @@ Router.map(function () {
 		path: '/profile/:_id',
 		controller: 'RegisteredController',
 		data: function () {
+			var userId = this.params._id;
 			return {
-				id: this.params._id,
-				completed: Completed.find({user: this.params._id})
+				id: userId,
+				completed: timelyCompleted([{user: userId}]),
+				chart: calcProfileBarChart(userId)
 			};
 		}
 	});
