@@ -38,6 +38,9 @@
 				{{#each completed}}
 				<li>Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{humanReadableDate completed_on}}</li>
 				{{/each}}
+				{{#if noneCompleted}}
+				There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 
+				{{/if}}
 			</ul>				
       </div>
     </div>
@@ -55,7 +58,9 @@
 		</div>
 		<div id="collapse-room-bar" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-room-bar">
 			<div class="panel-body">
-				<canvas id="room-doughnut-chart" width="300px" height="200px"></canvas>
+				{{initChartAutorun}}
+				<canvas class="{{#if chartHidden}}hidden{{/if}}" id="room-doughnut-chart" width="300px" height="200px"></canvas>
+				{{#if chartHidden}}There are no chores to chart in this <a href="" class="time-filter">time range</a>.{{/if}}
 			</div>
 		</div>
 	</div>	

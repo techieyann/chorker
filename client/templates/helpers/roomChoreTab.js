@@ -5,10 +5,11 @@ Template.roomChoreTab.helpers({
 	buttonIcon: function () {
 		return choreCompleteButtonIcon(this);
 	},
-	completed: function () {
+	noneCompleted: function () {
 		if (this) {
-			return Completed.find({chore: this._id});
+			if (this.completed.count()) return false;
 		}
+		return true;
 	}
 });
 

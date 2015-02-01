@@ -1,21 +1,17 @@
-Template.room.helpers({
-	room: function () {
-		if (this) {
-			return this.toString();
-		}
+Template.roomByHousemate.helpers({
+	chartHidden: function () {
+		if (this.chart.length) return false;
+		return true;
 	},
-	chores: function () {
-		if (this) {
-			return Chores.find({room: this.toString()});
-		}
+	initChartAutorun: function () {
+		var that = this;
+		Deps.autorun(function () {
+			renderRoomDoughnutChart(that.chart);
+		});
 	}
 });
 
 Template.roomByHousemate.rendered = function () {
-	var that = this;
-	Deps.autorun(function () {
-		calcAndRenderRoomDoughnut(that.data);
-	});
-
+	renderRoomDoughnutChart(this.data.chart);
 };
 
