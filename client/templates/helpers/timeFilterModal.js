@@ -51,9 +51,3 @@ Template.timeFilterModalBody.events = {
 		Session.set("timeFilter", timeFilter);
 	}
 };
-
-Template.timeFilterModalFooter.events = {
-	'click #close': function (e) {
-		closeModal();
-	}
-};

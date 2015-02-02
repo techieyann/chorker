@@ -1,0 +1,12 @@
+<template name="removeChoreCompletionModalHeader">
+	<h4 class="modal-title text-center">Are you sure you want to remove this chore record?</h4>
+</template>
+
+<template name="removeChoreCompletionModalBody">
+	<p class="text-center">{{chore.name}} ({{chore.room}}) completed by <strong>{{completed.username}}</strong> on {{humanReadableDate completed.completed_on}}</p>
+</template>
+
+<template name="removeChoreCompletionModalFooter">
+<button class="close-modal btn">Cancel</button>
+<button id="remove" class="btn btn-danger">Remove</button>
+</template>

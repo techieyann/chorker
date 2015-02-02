@@ -1,0 +1,22 @@
+<template name="backdateChoreModalHeader">
+	<h4 class="modal-title text-center">Enter the time you completed {{name}} ({{room}}):</h4>
+</template>
+
+<template name="backdateChoreModalBody">
+
+	<div class="row text-center">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			<div class="input-group datetimepicker">
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</span>
+				<input class="form-control" id="datetime-completed" readonly="readonly" value="{{now}}">
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="backdateChoreModalFooter">
+	<button class="close-modal btn">Close</button>
+	<button class="backdate-chore btn btn-primary">Backdate <span class="glyphicon glyphicon-ok"></span></button>
+</template>

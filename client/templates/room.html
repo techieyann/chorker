@@ -24,10 +24,7 @@
 						</a>
 					</div>
 					<div class="col-xs-3">
-						<div class="btn-group pull-right">
-							<button class="btn btn-default goto-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-share-alt"></span></button>
-							<button class="btn {{buttonClass}} complete-chore accordian-button" id="{{_id}}"><span id="{{_id}}" class="glyphicon {{buttonIcon}}"></span></button>
-						</div>
+						{{> choreButtons}}
 					</div>
 				</div>
       </h4>
@@ -36,7 +33,10 @@
       <div class="panel-body">
 			<ul>
 				{{#each completed}}
-				<li>Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{humanReadableDate completed_on}}</li>
+				<li>
+					Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{humanReadableDate completed_on}}
+					{{#if manageableCompleted}}<button class="remove-logged-chore">&times;</button>{{/if}}
+				</li>
 				{{/each}}
 				{{#if noneCompleted}}
 				There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 

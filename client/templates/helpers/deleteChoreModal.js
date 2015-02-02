@@ -1,7 +1,4 @@
 Template.deleteChoreModalFooter.events = {
-	'click #cancel': function (e) {
-		$('#modal').modal('hide');
-	},
 	'click #delete': function (e) {
 		if (this) {
 

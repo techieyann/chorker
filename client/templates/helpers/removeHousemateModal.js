@@ -1,7 +1,4 @@
 Template.removeHousemateModalFooter.events = {
-	'click #cancel': function (e) {
-		$('#modal').modal('hide');
-	},
 	'click #remove': function (e) {
 		var house = Session.get("house");
 		if (this && house) {

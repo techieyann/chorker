@@ -1,14 +1,6 @@
-
-
 Template.chore.helpers({
-	buttonClass: function () {
-		return choreCompleteButtonClass(this.chore);
-	},
-	buttonIcon: function () {
-		return choreCompleteButtonIcon(this.chore);
-	},
 	choreOwner: function () {
-		return checkChoreOwner(this.chore);
+		return checkChoreOwner(this);
 	},
 	isSelf: function () {
 		if (this && Meteor.user()) {
@@ -26,19 +18,6 @@ Template.chore.helpers({
 	}
 });
 
-
-Template.chore.events = {
-	'click .complete-chore': function(e) {
-		var button = $('#'+e.target.id+'.complete-chore');
-		if (this.chore) queueChore(this.chore, button);
-	},
-	'click .edit-chore': function (e) {
-		if (this.chore) editChoreModal(this.chore);
-	},
-	'click .delete-chore': function (e) {
-		if (this.chore) deleteChoreModal(this.chore);
-	}
-};
 
 Template.choreByHousemate.helpers({
 	chartHidden: function () {

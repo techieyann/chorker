@@ -26,7 +26,10 @@
 				<div class="panel-body">
 					<ul>
 						{{#each completed}}
-						<li>Completed <a href="{{pathFor route='chores'}}/{{chore._id}}">{{chore.name}}</a> (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens chore.room}}">{{chore.room}}</a>) on {{humanReadableDate completed_on}}</li>
+						<li>
+							Completed <a href="{{pathFor route='chores'}}/{{chore._id}}">{{chore.name}}</a> (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens chore.room}}">{{chore.room}}</a>) on {{humanReadableDate completed_on}}
+							{{#if manageableCompleted}}<button class="remove-logged-chore">&times;</button>{{/if}}
+						</li>
 						{{/each}}
 						{{#if noneCompleted}}
 						There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 

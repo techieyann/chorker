@@ -4,11 +4,14 @@
 
 		<div class="col-sm-6 well">
 			<div class="btn-group float-right">
+				{{#with chore}}
 				<button type="button" class="btn btn-default edit-chore" id="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button>
 				{{#if choreOwner}}
 				<button type="button" class="btn btn-default delete-chore" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
 				{{/if}}
+				<button class="btn btn-default backdate-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-calendar"></span></button>
 				<button class="btn {{buttonClass}} complete-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon {{buttonIcon}}"></span></button>
+				{{/with}}
 			</div>
 			{{#with chore}}
 			<p>{{name}} (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens room}}">{{room}}</a>)</p> 
@@ -33,7 +36,10 @@
 		<div class="col-sm-8">
 			<ul>
 				{{#each completed}}
-				<li>Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{humanReadableDate completed_on}}</li>
+				<li>
+					Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{humanReadableDate completed_on}}
+					{{#if manageableCompleted}}<button class="remove-logged-chore">&times;</button>{{/if}}
+				</li>
 				{{/each}}
 				{{#if noneCompleted}}
 				There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 

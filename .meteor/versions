@@ -44,6 +44,7 @@ minimongo@1.0.6
 mizzao:build-fetcher@0.2.0
 mizzao:jquery-ui@1.11.2
 mobile-status-bar@1.0.2
+momentjs:moment@2.8.4
 mongo@1.0.11
 mrt:accounts-ui-bootstrap-3@0.3.3
 mrt:chartjs@0.0.6
@@ -68,6 +69,7 @@ srp@1.0.2
 stylus@1.0.6
 templating@1.0.11
 tracker@1.0.5
+tsega:bootstrap3-datetimepicker@3.1.3_3
 ui@1.0.5
 underscore@1.0.2
 url@1.0.3
