@@ -63,16 +63,17 @@ Meteor.methods({
 			var lastCompleted = completedArray[timesCompleted-1].completed_on;
 
 			var newPeriod = 0;
-			completedArray.forEach(function (val, index) {
-				if (index == 1) {
-					newPeriod = moment(val.completed_on).diff(moment(completedArray[0].completed_on), 'seconds');
-				}
-				if (index > 1) {
-					var diff = moment(val.completed_on).diff(moment(completedArray[index-1].completed_on), 'seconds');
-					newPeriod = ((newPeriod*index)+diff) / (index+1);
-				}
-			});
-
+			if (timesCompleted > 1) {
+				completedArray.forEach(function (val, index) {
+					if (index == 1) {
+						newPeriod = moment(val.completed_on).diff(moment(completedArray[0].completed_on), 'seconds');
+					}
+					if (index > 1) {
+						var diff = moment(val.completed_on).diff(moment(completedArray[index-1].completed_on), 'seconds');
+						newPeriod = ((newPeriod*index)+diff) / (index+1);
+					}
+				});
+			}
 			metadata = {
 				last_completed: lastCompleted,
 				period: newPeriod,
