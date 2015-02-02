@@ -40,7 +40,7 @@ timelyCompleted = function (filter) {
 		}
 	}
 	if (filter.length) {
-		return Completed.find({$and: filter});
+		return Completed.find({$and: filter},{sort: {completed_on: -1}});
 	}
-	return Completed.find();
+	return Completed.find({},{sort: {completed_on: -1}});
 };
