@@ -52,34 +52,42 @@ Meteor.methods({
 		Chores.update({_id: id}, {$set: updatedChore});
 	},
 	deleteCompletedChore: function (options) {
+		console.log(options);
 		Completed.remove({_id: options.completeId});
 		return Meteor.call('updateChoreMetadata', options.choreId, function (err) {
 			if (err) throw err;
 		});
 	},
 		updateChoreMetadata: function (choreId) {
+			console.log(choreId);
 			var completedArray = Completed.find({chore:choreId}, {sort: {completed_on: 1}}).fetch();
 			var timesCompleted = completedArray.length;
-			var lastCompleted = completedArray[timesCompleted-1].completed_on;
-
 			var newPeriod = 0;
-			if (timesCompleted > 1) {
-				completedArray.forEach(function (val, index) {
-					if (index == 1) {
-						newPeriod = moment(val.completed_on).diff(moment(completedArray[0].completed_on), 'seconds');
-					}
-					if (index > 1) {
-						var diff = moment(val.completed_on).diff(moment(completedArray[index-1].completed_on), 'seconds');
-						newPeriod = ((newPeriod*index)+diff) / (index+1);
-					}
-				});
+			var lastCompleted = '';
+			if (timesCompleted > 0) {
+				lastCompleted = completedArray[timesCompleted-1].completed_on;
+
+
+				if (timesCompleted > 1) {
+					completedArray.forEach(function (val, index) {
+						if (index == 1) {
+							newPeriod = moment(val.completed_on).diff(moment(completedArray[0].completed_on), 'seconds');
+						}
+						if (index > 1) {
+							var diff = moment(val.completed_on).diff(moment(completedArray[index-1].completed_on), 'seconds');
+							newPeriod = ((newPeriod*index)+diff) / (index+1);
+						}
+					});
+				}
 			}
+
 			metadata = {
 				last_completed: lastCompleted,
 				period: newPeriod,
 				times_completed: timesCompleted
 			};
 			return Chores.update({_id: choreId}, {$set: metadata});
+
 		},
 	resetChores: function (options) {
 		var id = options.id;

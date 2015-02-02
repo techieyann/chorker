@@ -2,7 +2,7 @@ Template.removeChoreCompletionModalFooter.events = {
 	'click #remove': function (e) {
 		var options = {
 			completeId: this.completed._id,
-			choreId: this.completed.chore
+			choreId: this.chore._id
 		};
 		Meteor.call('deleteCompletedChore', options, function (err) {
 			if (err) {

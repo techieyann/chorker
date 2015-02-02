@@ -28,7 +28,7 @@ Template.backdateChoreModalFooter.events = {
 					return;
 				}
 			alert("success", "Backdated Chore: "+chore.name+" ("+chore.room+") @ "+backdate);
-			closeModal();
 		});
+		closeModal();
 	}
 };
