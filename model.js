@@ -52,14 +52,12 @@ Meteor.methods({
 		Chores.update({_id: id}, {$set: updatedChore});
 	},
 	deleteCompletedChore: function (options) {
-		console.log(options);
 		Completed.remove({_id: options.completeId});
 		return Meteor.call('updateChoreMetadata', options.choreId, function (err) {
 			if (err) throw err;
 		});
 	},
 		updateChoreMetadata: function (choreId) {
-			console.log(choreId);
 			var completedArray = Completed.find({chore:choreId}, {sort: {completed_on: 1}}).fetch();
 			var timesCompleted = completedArray.length;
 			var newPeriod = 0;
