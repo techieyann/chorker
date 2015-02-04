@@ -27,7 +27,7 @@ Router.map(function () {
 					filters['room'] = room;
 				}
 				filters['house_id'] = house._id;
-				var foundChores = Chores.find(filters);
+				var foundChores = Chores.find(filters).fetch();
 				if (choreFilters.due) {
 					var dueChores = [];
 					var due = choreFilters.due;
@@ -62,6 +62,7 @@ Router.map(function () {
 				}
 				else choreData.chores = foundChores;
 			}
+				choreData.chart = calcChoresDoughnutChart(choreData.chores);
 			return choreData;
 		}
 	});

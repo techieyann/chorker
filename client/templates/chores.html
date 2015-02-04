@@ -1,12 +1,22 @@
 <template name="chores">
+				{{#if houseOwner}}
+				<div class="row">
+					<div class="col-sm-8">
+						{{> chartModalButton data=chart type='Doughnut'}}
+					</div>
+				</div>
+			{{/if}}
 	<div class="row">
 		{{#unless houseOwner}}
-		<div class="col-sm-2 text-right">
-			<button class="btn btn-default" id="create-new-chore">New Chore</button><br>
+		<div class="col-sm-2">
+			<button class="btn btn-default" id="create-new-chore">New Chore</button>
+			{{> chartModalButton data=chart type='Doughnut'}}
 		</div>
+		<br class="visible-xs-block">
 		{{/unless}}
 		{{#if anyChores}}
 		<div class="col-sm-8">			
+
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">	
 				{{> choreFilters}}
 				{{#each chores}}
