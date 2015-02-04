@@ -14,14 +14,15 @@ Template.profileCharts.helpers({
 	},
 	initChartAutorun: function () {
 		var that = this;
+
 		Deps.autorun(function () {
-			renderProfileBarChart(that.chart);
+			renderChart(that.chart, 'Bar', 'profile-bar-chart');
 		});
 	}
 });
 
-Template.profileReporting.rendered = function () {
-	renderProfileBarChart(this.data.chart);
+Template.profileCharts.rendered = function () {
+	renderChart(this.data.chart, 'Bar', 'profile-bar-chart');
 };
 
 

@@ -5,6 +5,8 @@ Router.map(function () {
 		data: function () {
 			if (Meteor.user()) {
 				var userId = Meteor.user()._id;
+				var username = Meteor.user().profile.username;
+				if (!username) username = Meteor.user().emails[0].address;
 				var completedChores = timelyCompleted([{user: userId}]);
 				var completedArray = [];
 				completedChores.forEach( function (val) {
@@ -14,6 +16,7 @@ Router.map(function () {
 				});
 				return {
 					id: userId,
+					username: username,
 					completed: completedArray,
 					chart: calcProfileBarChart(userId)
 				};
@@ -25,6 +28,9 @@ Router.map(function () {
 		controller: 'RegisteredController',
 		data: function () {
 			var userId = this.params._id;
+			var house = Session.get("house");
+			if (house) {
+				var username = house.members[userId];
 				var completedChores = timelyCompleted([{user: userId}]);
 				var completedArray = [];
 				completedChores.forEach( function (val) {
@@ -32,11 +38,13 @@ Router.map(function () {
 					val.chore = Chores.findOne(choreId);
 					completedArray.push(val);
 				});
-			return {
-				id: userId,
-				completed: completedArray,
-				chart: calcProfileBarChart(userId)
-			};
+				return {
+					id: userId,
+					username: username,
+					completed: completedArray,
+					chart: calcProfileBarChart(userId)
+				};
+			}
 		}
 	});
 });

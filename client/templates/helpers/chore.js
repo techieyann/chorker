@@ -29,11 +29,12 @@ Template.choreByHousemate.helpers({
 	initChartAutorun: function () {
 		var that = this;
 		Deps.autorun(function () {
-			renderChoreDoughnutChart(that.chart);
+			renderChart(that.chart, 'Doughnut', 'chore-doughnut-chart');
+
 		});
 	}
 });
 
 Template.choreByHousemate.rendered = function () {
-	renderChoreDoughnutChart(this.data.chart);
+	renderChart(this.data.chart, 'Doughnut', 'chore-doughnut-chart');
 };

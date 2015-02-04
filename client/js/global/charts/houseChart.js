@@ -1,10 +1,3 @@
-renderHouseDoughnutChart = function (chartData) {
-	var houseDoughnutChart = document.getElementById("house-doughnut-chart");	
-	if(houseDoughnutChart && chartData) {
-		new Chart(houseDoughnutChart.getContext("2d")).Doughnut(chartData,null);
-	}
-};
-
 calcHouseDoughnutChart = function () {
 	var house = Session.get("house");
 	if (house) {

@@ -3,23 +3,27 @@
 	<div class="row">
 
 		<div class="col-sm-6 well">
-			<div class="btn-group float-right">
-				{{#with chore}}
+
+			{{#unless isDesktop}}
+			{{> chartModalButton data=chart type='Doughnut'}}
+			{{/unless}}
+			{{#with chore}}
+			<h2>{{name}}</h2>
+			<div class="btn-group pull-right">
 				<button type="button" class="btn btn-default edit-chore" id="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button>
 				{{#if choreOwner}}
 				<button type="button" class="btn btn-default delete-chore" id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></button>
 				{{/if}}
 				<button class="btn btn-default backdate-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon glyphicon-calendar"></span></button>
 				<button class="btn {{buttonClass}} complete-chore" id="{{_id}}"><span id="{{_id}}" class="glyphicon {{buttonIcon}}"></span></button>
-				{{/with}}
 			</div>
-			{{#with chore}}
-			<p>{{name}} (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens room}}">{{room}}</a>)</p> 
-			<p>{{desc}}</p>
+			<p>(<a href="{{pathFor route='house'}}/room/{{spacesToHyphens room}}">{{room}}</a>) <br> {{desc}}</p>
 			{{/with}}
 		</div>
 		<div class="col-sm-6">
+			{{#if isDesktop}}
 			{{> choreByHousemate}}
+			{{/if}}
 		</div>
 	</div>
 	<div class="row">

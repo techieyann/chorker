@@ -60,6 +60,23 @@ Template.index.events = {
 		e.preventDefault();
 		openModal('timeFilterModalHeader', 'timeFilterModalBody', 'timeFilterModalFooter');
 	},
+	'click .show-chart': function (e) {
+		e.preventDefault();
+		var options = {
+			chart: this.data,
+			type: this.type
+		};
+		switch (this.type) {
+			case 'Doughnut': 
+			options.name = 'Housemate Ratios';
+			break;
+			case 'Bar': 
+			options.name = 'Room Count';
+			break;
+		}
+		openModal('chartModalHeader', 'chartModalBody', '', options);
+
+	},
 	'click .backdate-chore': function (e) {
 		e.preventDefault();
 		var options = {
@@ -67,7 +84,7 @@ Template.index.events = {
 			name: this.name,
 			room: this.room
 		}
-		openModal('backdateChoreModalHeader','backdateChoreModalBody','backdateChoreModalFooter',options);
+		openModal('backdateChoreModalHeader','backdateChoreModalBody','backdateChoreModalFooter', options);
 	},
 	'click .remove-logged-chore': function (e) {
 		e.preventDefault();

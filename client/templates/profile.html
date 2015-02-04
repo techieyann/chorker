@@ -11,8 +11,14 @@
 </template>
 
 <template name="profileReporting">
+	{{#unless isDesktop}}
+	{{> chartModalButton data=chart type='Bar'}}
+	{{/unless}}
+	<h2>{{username}}</h2>
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">	
+		{{#if isDesktop}}
 		{{> profileCharts}}
+		{{/if}}
 		<div class="panel panel-default">
 			<div class="panel-heading" role="tab" id="heading-raw-list">
 				<h4 class="panel-title">
@@ -55,7 +61,7 @@
 		<div id="collapse-room-bar" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-room-bar">
 			<div class="panel-body">
 				{{initChartAutorun}}
-				<canvas class="{{#if chartHidden}}hidden{{/if}}" id="room-bar-chart" width="300px" height="200px"></canvas>
+				<canvas class="{{#if chartHidden}}hidden{{/if}}" id="profile-bar-chart" width="300px" height="200px"></canvas>
 				{{#if chartHidden}}There are no chores to chart in this <a href="" class="time-filter">time range</a>.{{/if}}
 			</div>
 		</div>

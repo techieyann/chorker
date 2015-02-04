@@ -1,10 +1,3 @@
-renderRoomDoughnutChart = function (chartData) {
-	var roomDoughnutChart = document.getElementById("room-doughnut-chart")
-	if (roomDoughnutChart && chartData) {
-		new Chart(roomDoughnutChart.getContext("2d")).Doughnut(chartData,null);
-	}
-};
-
 calcRoomDoughnutChart = function (chores) {
 	var house = Session.get("house");
 	if (chores && house) {

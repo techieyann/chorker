@@ -1,13 +1,3 @@
-renderChoreDoughnutChart = function (chartData) {
-
-	// Get the context of the canvas element we want to select
-	var choreDoughnutChart = document.getElementById("chore-doughnut-chart");
-	if (choreDoughnutChart) {
-		new Chart(choreDoughnutChart.getContext("2d")).Doughnut(chartData,null);
-	}
-
-};
-
 calcChoreDoughnutChart = function (choreId) {
 	var house = Session.get("house");
 	if (choreId && house) {

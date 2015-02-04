@@ -6,12 +6,13 @@ Template.roomByHousemate.helpers({
 	initChartAutorun: function () {
 		var that = this;
 		Deps.autorun(function () {
-			renderRoomDoughnutChart(that.chart);
+			renderChart(that.chart, 'Doughnut', 'room-doughnut-chart');
+
 		});
 	}
 });
 
 Template.roomByHousemate.rendered = function () {
-	renderRoomDoughnutChart(this.data.chart);
+	renderChart(this.data.chart, 'Doughnut', 'room-doughnut-chart');
 };
 

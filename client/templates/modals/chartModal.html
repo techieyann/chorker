@@ -1,0 +1,20 @@
+<template name="chartModalHeader">
+	<h3 class="modal-title text-center">{{name}}</h3>
+</template>
+
+<template name="chartModalBody">
+	<div class="row">
+		<div class="col-sm-8 {{#unless doughnut}}col-sm-offset-2{{/unless}}">
+			<canvas id="chart-modal-canvas" width="300px" height="200px"></canvas>
+		</div>
+		<div class="col-sm-4">
+			{{#if doughnut}}
+			<ul>
+			{{#each chart}}
+			<li><strong>{{label}}</strong>: {{value}}</li>
+			{{/each}}
+			</ul>
+			{{/if}}
+		</div>
+	</div>
+</template>

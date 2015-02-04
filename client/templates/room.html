@@ -1,9 +1,14 @@
 <template name="room">
 	<div class="row">
 		<div class="col-sm-6">			
+			{{#unless isDesktop}}
+			{{> chartModalButton data=chart type='Doughnut'}}
+			{{/unless}}
 			<h2>{{room}}:</h2>
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">	
+				{{#if isDesktop}}
 				{{> roomByHousemate}}
+				{{/if}}
 				{{#each chores}}
 				{{> roomChoreTab}}
 				{{/each}}
@@ -11,7 +16,6 @@
 		</div>
 	</div>
 </template>
-
 
 <template name="roomChoreTab">
   <div class="panel panel-default">

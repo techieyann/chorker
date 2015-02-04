@@ -6,11 +6,10 @@ Template.houseDoughnutChart.helpers({
 	initChartAutorun: function () {
 		var that = this;
 		Deps.autorun(function () {
-			renderHouseDoughnutChart(that.chart);
+			renderChart(that.chart, 'Doughnut', 'house-doughnut-chart');
 		});		
 	}
 });
 Template.houseDoughnutChart.rendered = function () {
-	renderHouseDoughnutChart(this.data.chart);
-
+	renderChart(this.data.chart, 'Doughnut', 'house-doughnut-chart');
 };
