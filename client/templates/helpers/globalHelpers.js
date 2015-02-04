@@ -20,7 +20,7 @@ Template.registerHelper('houseOwner', function () {
 });
 
 Template.registerHelper('humanReadableDate', function (datetime) {
-	return moment(datetime).format('MMMM Do YYYY, h:mm a');
+	return moment(datetime).format('M/D/YY-h:mma');
 });
 
 var round2Dec = function (num) {

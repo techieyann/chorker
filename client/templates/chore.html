@@ -27,29 +27,71 @@
 		</div>
 	</div>
 	<div class="row">
-			{{#with chore}}
-{{#if period}}
-		<div class="col-sm-4">
-			<p>Completed every {{period}} seconds</p>
-			<p>Completed every {{secondsToMinutes period}} minutes</p>
-			<p>Completed every {{secondsToHours period}} hours</p>
-			<p>Completed every {{secondsToDays period}} days</p>
-		</div>
-{{/if}}
-			{{/with}}		
-		<div class="col-sm-8">
-			<ul>
+		<div class="col-sm-6">
+			{{#unless noneCompleted}}
+			<table class="completed-table">
+				<tr>
+					<th>Completed by</th>
+					<th>on Date</th>
+					<th></th>
+				</tr>
 				{{#each completed}}
-				<li>
-					Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{humanReadableDate completed_on}}
-					{{#if manageableCompleted}}<button class="remove-logged-chore">&times;</button>{{/if}}
-				</li>
+				<tr>
+					<td class="text-center"><a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a></td>
+					<td>{{humanReadableDate completed_on}}</td>
+					<td>{{#if manageableCompleted}}<button class="remove-logged-chore pull-right">&times;</button>{{/if}}</td>
+				</tr>
 				{{/each}}
-				{{#if noneCompleted}}
-				There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 
-				{{/if}}
-			</ul>
+			</table>
+			{{else}}
+			There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 
+			{{/unless}}
+
 		</div>
+		{{#with chore}}
+		{{#if period}}
+		<div class="col-sm-6">
+			<table>
+				<tr>
+					<th>Completed</th>
+					<th>every</th>
+				</tr>
+				<tr>
+					<td class="text-right">
+						{{period}} 
+					</td>
+					<td>
+						-seconds
+					</td>
+				</tr>
+				<tr>
+					<td class="text-right">
+						{{secondsToMinutes period}} 
+					</td>
+					<td>
+						-minutes
+					</td>
+				</tr>
+				<tr>
+					<td class="text-right">
+						{{secondsToHours period}} 
+					</td>
+					<td>
+						-hours
+					</td>
+				</tr>
+				<tr>
+					<td class="text-right">
+						{{secondsToDays period}} 
+					</td>
+					<td>
+						-days
+					</td>
+				</tr>
+			</table>
+		</div>
+		{{/if}}
+		{{/with}}		
 </div>
 
 </template>

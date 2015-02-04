@@ -30,16 +30,30 @@
 			</div>
 			<div id="collapse-raw-list" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-raw-list">
 				<div class="panel-body">
-					<ul>
+					<h3>Completed:</h3>
+					{{#unless noneCompleted}}
+					<table class="completed-table">
+						<tr>
+							<th>Chore</th>
+							<th>(Room)</th>
+							<th>on Date</th>
+							<th></th>
+						</tr>
 						{{#each completed}}
-						<li>
-							Completed <a href="{{pathFor route='chores'}}/{{chore._id}}">{{chore.name}}</a> (<a href="{{pathFor route='house'}}/room/{{spacesToHyphens chore.room}}">{{chore.room}}</a>) on {{humanReadableDate completed_on}}
-							{{#if manageableCompleted}}<button class="remove-logged-chore">&times;</button>{{/if}}
-						</li>
+						<tr>
+							<td class="text-right"><a href="{{pathFor route='chores'}}/{{chore._id}}">{{chore.name}}</a></td>
+							<td class="text-left">(<a href="{{pathFor route='house'}}/room/{{spacesToHyphens chore.room}}">{{chore.room}}</a>)</td>
+							<td>{{humanReadableDate completed_on}}</td>
+							<td>{{#if manageableCompleted}}<button class="remove-logged-chore pull-right">&times;</button>{{/if}}</td>
+						</tr>
 						{{/each}}
-						{{#if noneCompleted}}
-						There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 
-						{{/if}}
+					</table>
+					{{else}}
+					There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 
+					{{/unless}}
+					<ul>
+
+
 					</ul>
 				</div>
 			</div>

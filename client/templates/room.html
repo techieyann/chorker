@@ -35,17 +35,24 @@
 		</div>
     <div id="collapse-{{_id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{_id}}">
       <div class="panel-body">
-			<ul>
-				{{#each completed}}
-				<li>
-					Completed by <a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a> on {{humanReadableDate completed_on}}
-					{{#if manageableCompleted}}<button class="remove-logged-chore">&times;</button>{{/if}}
-				</li>
-				{{/each}}
-				{{#if noneCompleted}}
+				{{#unless noneCompleted}}
+				<table class="completed-table">
+					<tr>
+						<th>Completed by</th>
+						<th>on Date</th>
+						<th></th>
+					</tr>
+					{{#each completed}}
+					<tr>
+						<td class="text-center"><a href="{{pathFor route='profile'}}{{#unless isSelf}}/{{user}}{{/unless}}">{{#if isSelf}}you{{else}}{{username}}{{/if}}</a></td>
+						<td>{{humanReadableDate completed_on}}</td>
+						<td>{{#if manageableCompleted}}<button class="remove-logged-chore pull-right">&times;</button>{{/if}}</td>
+					</tr>
+					{{/each}}
+				</table>
+				{{else}}
 				There haven't been any chores done in this <a href="" class="time-filter">time range</a>. 
-				{{/if}}
-			</ul>				
+				{{/unless}}
       </div>
     </div>
   </div>	
