@@ -1,7 +1,7 @@
 renderChart = function (chartData, chartType, selector) {
 	if (selector) {
 		var chartElement = document.getElementById(selector);	
-		if (chartElement && chartData) {
+		if (chartElement && !emptyChartData(chartData)) {
 			if (chartType == 'Bar') {
 				chartData = {
 					labels: chartData.labels,
@@ -19,4 +19,16 @@ renderChart = function (chartData, chartType, selector) {
 	}
 };
 
+var emptyChartData = function (chartData) {
+	if (chartData) {
+		var chartDataObj = Object.keys(chartData);
+		if (chartDataObj) {
+			if (chartDataObj.length) {
+				return false;
+			}
+		}
+		else return false;
+	}
+	return true;
+}
 
