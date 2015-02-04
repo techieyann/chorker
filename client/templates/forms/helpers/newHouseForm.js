@@ -53,7 +53,7 @@ Template.newHouseForm.events = {
 			"profile.initialized":true,
 			"profile.house":id
 		}});
-			Router.go('/profile');
+			Router.go('/house/'+id);
 		});
 	}
 };
