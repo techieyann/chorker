@@ -18,8 +18,8 @@
 
       <ul class="nav navbar-nav navbar-right">
 				{{#if currentUser}}
-				<li class="text-right {{activeNav '/house'}}"><a href="{{pathFor route='house'}}"><span class="glyphicon glyphicon-home"></span> House</a></li>
 				<li class="text-right {{activeNav '/chore'}}"><a href="{{pathFor route='chores'}}"><span class="glyphicon glyphicon-bullhorn"></span> Chores</a></li>
+				<li class="text-right {{activeNav '/house'}}"><a href="{{pathFor route='house'}}"><span class="glyphicon glyphicon-home"></span> House</a></li>
 				<li class="text-right {{activeNav '/profile'}}"><a href="{{pathFor route='profile'}}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 			<li class="text-right"><a href="" class="time-filter"><span class="glyphicon glyphicon-time time-filter"></span> Filter</a></li>
 				{{/if}}
