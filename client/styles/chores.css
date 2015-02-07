@@ -33,7 +33,7 @@ footer{
 .completed-table td{
 		border-bottom: solid 1px grey;
 }
-.completed-table{
+.completed-table, .period-table{
 		margin-left:auto;
 		margin-right:auto;
 }
