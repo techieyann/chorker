@@ -2,6 +2,7 @@ Router.map(function () {
 	this.route('chores', {
 		path:'/chores',
 		controller: 'RegisteredController',
+		title: 'Chore list',
 		data: function () {
 			var allChores = Chores.find();
 			var choreData = {
@@ -66,9 +67,12 @@ Router.map(function () {
 			return choreData;
 		}
 	});
+
 	this.route('chore', {
 		path:'/chores/:_id',
 		controller: 'RegisteredController',
+		title: 'Chore page',
+		parent: 'chores',
 		data: function () {
 			var choreId = this.params._id;
 			return {

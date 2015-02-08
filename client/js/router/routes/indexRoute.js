@@ -1,6 +1,7 @@
 Router.map(function () {
 	this.route('welcome', {
 		path: '/',
-		controller: 'BaseController'
+		controller: 'BaseController',
+		title: 'Welcome'
 	});
 });

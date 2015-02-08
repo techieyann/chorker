@@ -2,6 +2,7 @@ Router.map(function () {
 	this.route('profile', {
 		path: '/profile',
 		controller: 'RegisteredController',
+		title: 'Profile',
 		data: function () {
 			if (Meteor.user()) {
 				var userId = Meteor.user()._id;
@@ -26,6 +27,7 @@ Router.map(function () {
 	this.route('housemateProfile', {
 		path: '/profile/:_id',
 		controller: 'RegisteredController',
+		title: "Housemate's Profile",
 		data: function () {
 			var userId = this.params._id;
 			var house = Session.get("house");

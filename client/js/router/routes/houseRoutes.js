@@ -2,6 +2,7 @@ Router.map(function () {
 	this.route('house', {
 		path: '/house',
 		controller: 'RegisteredController',
+		title: 'House Status',
 		data: function () {
 			var house = Session.get("house");
 			if (Meteor.user() && house) {
@@ -29,6 +30,8 @@ Router.map(function () {
 	this.route('manageHouse', {
 		path: '/house/:_id',
 		controller: 'RegisteredController',
+		title: 'Manage House',
+		parent: 'house',
 		data: function () {
 			var house = Session.get("house");
 			if (house) {
