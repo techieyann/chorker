@@ -2,7 +2,7 @@ calcProfileBarChart = function (userId) {
 	var house = Session.get("house");
 	if (house) {
 		var rooms = house.rooms;
-		rooms.push({name: 'other'});
+		rooms.push({name: 'misc'});
 		var chartLabels = [];
 		var chartData = [];
 		rooms.forEach(function (val) {

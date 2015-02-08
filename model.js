@@ -215,7 +215,7 @@ Meteor.methods({
 					'rooms': house.rooms
 				}});
 				Chores.update({house_id: id, room: roomName}, {$set:{
-					'room': 'other'
+					'room': 'misc'
 				}});
 				return;
 			}

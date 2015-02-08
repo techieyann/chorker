@@ -9,7 +9,7 @@
 			<input id="edit-chore-name" name="choreName" type="text" placeholder="Enter a chore name" value="{{name}}">
 			<label for="edit-chore-room">in Room:</label>
 			<select id="edit-chore-room" name="choreRoom">
-				<option value="other">other</option>
+				<option value="misc">misc</option>
 				{{#each rooms this}}
 				<option {{selectedRoom}} value="{{name}}">{{name}}</option>
 				{{/each}}

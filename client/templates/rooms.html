@@ -1,7 +1,7 @@
 <template name="rooms">
 	<h3>Public space in house:</h3>
 	<ul>
-		<li><a href="{{pathFor route='house'}}/room/other">other</a></li>
+		<li><a href="{{pathFor route='house'}}/room/misc">misc</a></li>
 		{{#each rooms}}
 		<li><a href="{{pathFor route='house'}}/room/{{spacesToHyphens name}}">{{name}}</a> <button class="delete-room" id="{{name}}">&times;</button></li>
 		{{/each}}
