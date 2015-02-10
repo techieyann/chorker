@@ -12,14 +12,12 @@
 
 		{{> alert}}
 		{{> breadcrumbs}}
-		<hr>
+
 		{{#if currentUser}}
 		{{> yield}}
 		{{else}}
 		{{> welcome}}
 		{{/if}}
-		<hr>
-		{{> breadcrumbs}}
 		<footer>
 			{{> yield region="footer"}}
 		</footer>

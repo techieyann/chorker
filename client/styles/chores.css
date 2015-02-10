@@ -1,6 +1,5 @@
 /* CSS declarations go here */
 
-
 .text-right{
 		text-align:right;
 }
@@ -37,7 +36,9 @@ footer{
 		margin-left:auto;
 		margin-right:auto;
 }
-
+/*breadcrumbs*/
+.breadcrumb {background: #dadada; margin-top:-10px; margin-bottom:10px}
+.breadcrumb>li+li:before {color: #999999; content: "\203A\00a0";}
 /*loginButtons fixes*/
 #login-dropdown-list .dropdown-toggle{
 		line-height:3.5;

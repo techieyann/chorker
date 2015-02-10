@@ -2,13 +2,11 @@
 
 	<ol class="breadcrumb">
 		{{#each Breadcrumb}}
-		<li class="{{cssClasses}}">
-			{{#if isNotCurrentPath}}
-			<a href="{{url}}">{{title}}</a>
-			{{else}}
-			{{title}}
-			{{/if}}
-		</li>
+		{{#if isNotCurrentPath}}
+		<li><a href="{{url}}">{{title}}</a></li>
+		{{else}}
+		<li class="active">{{title}}</li>
+		{{/if}}
 		{{/each}}
 	</ol>
 </template>
