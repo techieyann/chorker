@@ -32,5 +32,7 @@ changeUsernameModal = function () {
 };
 
 Template.profile.events = {
-	'click #change-username': changeUsernameModal()
+	'click #change-username': function () {
+		changeUsernameModal();
+	}
 };
