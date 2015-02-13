@@ -9,7 +9,8 @@ Template.removeChoreCompletionModalFooter.events = {
 				alert('danger', 'Remove Completed Chore Error: '+err);
 				return;
 			}
-			closeModal();
+			alert('success', 'Successfully removed completed chore');
 		});
+			closeModal();
 	}
 };

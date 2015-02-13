@@ -25,9 +25,9 @@ Template.usernameForm.events = {
 					alert("danger", "Change Username Error: "+err.message);
 					return;
 				}
-				closeModal();
 				alert("success", "Successfully changed username to '"+name+"'");
 			});
+			closeModal();
 		}
 	}
 };
